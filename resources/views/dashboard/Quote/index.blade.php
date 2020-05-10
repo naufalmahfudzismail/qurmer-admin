@@ -125,7 +125,7 @@
                     { data: 'action', name: 'action'}
                 ],
                 columnDefs: [{
-                    targets: 4,
+                    targets: 2,
                     render: function ( data, type, row ) {
                         if(data != null && data.length > 125){
                             data = data.substr( 0, 125 );

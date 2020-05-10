@@ -60,11 +60,11 @@ class QuoteController extends Controller
         }else{
             $fileName = null;
         }
-        $article = new Quote();
-        $article->title = $request->title;
-        $article->description = $request->description;
-        $article->image = $fileName;
-        $article->save();
+        $quote = new Quote();
+        $quote->title = $request->title;
+        $quote->description = $request->description;
+        $quote->image = $fileName;
+        $quote->save();
         
         return redirect()->route('quote.index');
     }

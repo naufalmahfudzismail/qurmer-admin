@@ -212,6 +212,18 @@
                             <span class="title">Ayat</span>
                         </a>
                     </li>
+                    <li class="nav-item {{ (request()->segment(2) == 'ayat') ? 'active' : '' }}">
+                        <a href="/audio" class="nav-link nav-toggle">
+                            <i class="icon-earphones"></i>
+                            <span class="title">Audio</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ (request()->segment(2) == 'ayat') ? 'active' : '' }}">
+                        <a href="/video" class="nav-link nav-toggle">
+                            <i class="icon-playlist"></i>
+                            <span class="title">Video</span>
+                        </a>
+                    </li>
                     <li class="nav-item {{ (request()->segment(2) == 'challenge') ? 'active' : '' }}">
                         <a href="/challenge" class="nav-link nav-toggle">
                             <i class="icon-book-open"></i>
@@ -238,7 +250,7 @@
                     </li>
                     <li class="nav-item {{ (request()->segment(2) == 'Ranking') ? 'active' : '' }}">
                         <a href="/ranking" class="nav-link nav-toggle">
-                            <i class="icon-book-open"></i>
+                            <i class="icon-trophy"></i>
                             <span class="title">Ranking User</span>
                         </a>
                     </li>
