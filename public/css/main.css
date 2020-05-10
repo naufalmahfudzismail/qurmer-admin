@@ -1,0 +1,74 @@
+body {
+  background-color: #FBFBFB;
+  /* background: url(../img/bg2-01.png) no-repeat center fixed; */
+  /* background-size:contain; */
+  background-position:right;
+  background-repeat:no-repeat;
+}
+
+.card-login {
+  border-radius: 8px;
+  height: 550px;
+}
+
+.card-login-form {
+  margin-top: 40px;
+  margin-left: 40px;
+  margin-right: 40px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+}
+
+.card-login-form .card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.card-login-form .text-input-form {
+  margin-top: 20px;
+}
+
+.card-login-form .contoh-email {
+  font-size: 12px;
+}
+
+.card-login-form .btn-login {
+  padding-top: 4px;
+  margin-top: 35px;
+  height: 56px;
+  background-color: #0994A6;
+  color: white;
+}
+
+.card-login-form .text-lupa-sandi {
+  margin-top: 12px;
+}
+
+.card-login-form .text-lupa-sandi a {
+  font-size: 14px;
+  color: #0994A6;
+  font-weight: 600;
+}
+
+.card-login-form .text-error {
+  font-size: 12px;
+  font-weight: 600;
+  color: #F2608C;
+}
+
+.card-login-form .text-daftar {
+  margin-top: 30px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.footer {
+  padding-top: 20px;
+  position: absolute;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 77px;
+  border-top: 1px;
+}
+/*# sourceMappingURL=main.css.map */

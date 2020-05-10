@@ -1,0 +1,24 @@
+.logo-default {
+    margin-top: 8px !important;
+}
+
+.button-logout {
+    background-color: transparent;
+    color: #aeb2c4;;
+    margin-left: 60px;
+}
+
+.box-case{
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.box-case h4{
+    font-size:30px;
+    font-weight: bold;
+}
+
+.box-case .count{
+    padding-top: 10px;
+    text-align: right;
+    font-size:24px;
+}
