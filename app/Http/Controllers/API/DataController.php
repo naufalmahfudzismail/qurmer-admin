@@ -31,4 +31,14 @@ class DataController extends Controller
             return SendResponse::fail($e->getMessage(), 500);
         }
     }
+
+    public function getQuote(){
+        try{
+            $data['quote'] = Quote::all();
+            return SendResponse::success($data, 200);
+
+        }catch(\Exception $e){
+            return SendResponse::fail($e->getMessage(), 500);
+        }
+    }
 }

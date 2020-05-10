@@ -13,4 +13,9 @@ class Badge extends Model
 	    'updated_at'
     ];
     //
+
+    public function surah(){
+        return $this->hasMany('App\Model\Surah');
+    }
+
 }

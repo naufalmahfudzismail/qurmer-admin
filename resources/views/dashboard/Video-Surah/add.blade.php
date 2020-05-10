@@ -6,11 +6,11 @@
         <i class="fa fa-circle"></i>
     </li>
     <li>
-        <a href="/audio">Audio</a>
+        <a href="/audio">Video</a>
         <i class="fa fa-circle"></i>
     </li>
     <li>
-        <span class="active">Tambah Audio</span>
+        <span class="active">Tambah Video</span>
     </li>
 </ul>
 {{-- @if (session()->has('error')    )
@@ -27,7 +27,7 @@
     <div class="col-md-12 box-shadow box-radius" style="background:#fff;">
         <div class="portlet">
             <div class="portlet-title">
-                <div class="caption" style="font-weight:bolder;padding:20px 0;">Add Article</div>
+                <div class="caption" style="font-weight:bolder;padding:20px 0;">Add Video</div>
                 <div class="tools">
                     <a href="javascript:;" class="collapse"> </a>
                     <a href="#portlet-config" data-toggle="modal" class="config"> </a>
@@ -37,10 +37,10 @@
             </div>
             <div class="portlet-body">
                 <div class="table-borderless">
-                    <form method="POST" action="{{ route('audio.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('video.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Surat</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Category</label>
                             <div class="col-md-6">
                                 <select id="surah_id" name="surah_id" style="padding:6px;width:100%">
                                     @foreach($surahs as $surah)
@@ -53,7 +53,7 @@
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">Audio</label>
                             <div class="col-md-6">
-                                <input accept="audio/*" id="file" type="file" class="form-control" name="file" required>
+                                <input accept ="video/*" id="file" type="file" class="form-control" name="file" required>
                             </div>
                         </div>
                     

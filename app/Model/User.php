@@ -42,4 +42,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function history(){
+        return $this->hasMany('App\Model\History');
+    }
+
+    public function task(){
+        return $this->hasMany('App\Model\Task');
+    }
+
+    public function progress(){
+        return $this->hasMany('App\Model\Progress');
+    }
+
+    public function score(){
+        return $this->hasOne('App\Model\Score');
+    }
 }

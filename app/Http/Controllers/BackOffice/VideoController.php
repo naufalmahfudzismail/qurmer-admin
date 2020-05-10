@@ -4,6 +4,8 @@ namespace App\Http\Controllers\BackOffice;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Quote;
+use App\Model\Surah;
+use App\Model\Video;
 use DataTables;
 
 class VideoController extends Controller
@@ -15,7 +17,7 @@ class VideoController extends Controller
      */
     public function index()
     {
-        return view('dashboard.video-surahindex');
+        return view('dashboard.video-surah.index');
     }
 
     /**
@@ -25,24 +27,28 @@ class VideoController extends Controller
      */
 
     public function getData(){
-        $data = Video::get();
+        $data = Video::with('surah')->get();
         return DataTables::of($data)
         ->addIndexColumn()
-        ->editColumn('image', function($row){
-            $url = asset('image/quote/'.$row->image);
-            return '<img height="100px" width="100px" src="'.$url.'" class="img-thumbnail"/>';
+        ->editColumn('file', function($row){
+            $url = asset('video-asset/'.$row->file);
+            return '<video width="320" height="240" controls>
+            <source src="'.$url.'"  type="video/mp4" data-recordings = "'.$url.'">
+            </video>';
         })
         ->addColumn('action', function($row){
             $button = '<a href="/quote/'.$row['id'].'/edit"><button class="btn btn-warning btn-sm edit" style="float:left;" id="'.$row['id'].'"><i class="fa fa-pencil"></i> Edit</button></a>';
             $button .= '<a href="javascript:;"><button class="btn btn-danger btn-sm delete" id="'.$row['id'].'"><i class="fa fa-trash"></i> Delete</button></a>';
             return $button;
         })
-        ->rawColumns(['image','action'])
+        ->rawColumns(['file','action'])
         ->make(true);
     }
+
     public function create()
     {
-        return view('dashboard.video-surah.add');
+        $surahs = Surah::orderBy('id')->get();
+        return view('dashboard.video-surah.add', compact('surahs'));
     }
 
     /**
@@ -53,20 +59,19 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->file('image')){
-            $file = $request->file('image');
-            $fileName = str_random(32).'-'. $file->getClientOriginalName();
-            $file->move(public_path('image/quote'), $fileName);
+        if($request->file('file')){
+            $file = $request->file('file');
+            $fileName = str_random(8).'-'. $file->getClientOriginalName();
+            $file->move(public_path('video-asset'), $fileName);
         }else{
             $fileName = null;
         }
-        $article = new Quote();
-        $article->title = $request->title;
-        $article->description = $request->description;
-        $article->image = $fileName;
-        $article->save();
+        $audio = new Video();
+        $audio->surah_id = $request->surah_id;
+        $audio->file= $fileName;
+        $audio->save();
         
-        return redirect()->route('quote.index');
+        return redirect()->route('video.index');
     }
 
     /**

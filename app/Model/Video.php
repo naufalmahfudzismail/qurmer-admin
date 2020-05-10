@@ -12,4 +12,9 @@ class Video extends Model
 	    'updated_at'
     ];
     //
+
+    public function surah()
+    {
+        return $this->belongsTo('App\Model\Surah', $this->surah_id);
+    }
 }
