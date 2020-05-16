@@ -15,14 +15,19 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         try {
-            $user = User::where('email', $request->email)->where('password', $request->password)->first();
+            $user = User::where('email', $request->email)->first();
             if(!$user){
-                return SendResponse::message('Email atau Password salah', 401);
+                return SendResponse::message('Akun anda tidak terdaftar', 401);
             }else{
-                $data = [];
-                $data['token'] = $user->createToken('nApp')->accessToken;
-                $data['user'] = $user;
-                return SendResponse::success($data, 200);
+                $check = Hash::check($user->password, $request->password);
+                if(!$check){
+                    return SendResponse::message('Password salah', 401);
+                }else{
+                    $data = [];
+                    $data['token'] = $user->createToken('nApp')->accessToken;
+                    $data['user'] = $user;
+                    return SendResponse::success($data, 200);
+                }
             }
         } catch (\Exception $e) {
             return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
@@ -36,6 +41,9 @@ class AuthController extends Controller
             $user = User::where('email', $request->email)->first();
             if (!$user) {
                 $user = self::registerProvider($request);
+                $data['created_new'] = true;
+            }else{
+                $data['created_new'] = false;
             }
             $data['token'] =  $user->createToken('nApp')->accessToken;
             $data['user'] = $user;
@@ -62,10 +70,10 @@ class AuthController extends Controller
                 $data['pekerjaan'] = $request['pekerjaan'];
                 $data['gender'] = $request['gender'];
                 $data['foto_profil'] = null;
-                $data['goole_id'] = null;
+                $data['google_id'] = null;
                 $data['password'] = Hash::make($request['password']);
                 $user = User::create($data);
-                $data['token'] =  $user->createToken('nApp')->accessToken;
+                //$data['token'] =  $user->createToken('nApp')->accessToken;
 
                 return SendResponse::success($data, 200);
             }
@@ -84,9 +92,11 @@ class AuthController extends Controller
         $data['pekerjaan'] = null;
         $data['gender'] = null;
         $data['foto_profil'] = null;
-        $data['from_google'] = $request['google_id'];
+        $data['google_id'] = $request['google_id'];
         $data['password'] = null;
         $user =  User::create($data);
+
+        return $user;
     }
 
     public function userData()
