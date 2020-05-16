@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('pekerjaan')->nullable();
             $table->string('gender')->nullable();
             $table->string('foto_profil')->nullable();
-            $table->boolean('from_google');
+            $table->string('google_id')->nullable();
             $table->string('password')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
