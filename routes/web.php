@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('template/app');
 });
 
-Route::get('/admin', 'AdminController@index');
+//Route::get('/admin', 'AdminController@index');
 
 Auth::routes();
 
