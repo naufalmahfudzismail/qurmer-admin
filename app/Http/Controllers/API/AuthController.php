@@ -7,6 +7,7 @@ use App\Model\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use App\Services\SendResponse;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
