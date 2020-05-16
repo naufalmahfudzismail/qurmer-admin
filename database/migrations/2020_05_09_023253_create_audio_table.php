@@ -17,7 +17,7 @@ class CreateAudioTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('surah_id');
             $table->string('file')->nullable();
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->timestamps();
         });
     }

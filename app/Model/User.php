@@ -55,6 +55,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Model\Progress');
     }
 
+    public function playlist(){
+        return $this->hasMany('App\Model\Playlist');
+    }
+
     public function score(){
         return $this->hasOne('App\Model\Score');
     }

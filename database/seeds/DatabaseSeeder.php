@@ -1,5 +1,6 @@
 <?php
 
+use App\Model\Audio;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,5 +14,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(SurahTableSeeder::class);
         $this->call(AyahTableSeeder::class);
+        $this->call(AudioTableSeeder::class);
     }
 }
