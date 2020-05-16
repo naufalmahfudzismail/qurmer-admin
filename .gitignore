@@ -4,6 +4,7 @@
 /public/audio-asset
 /public/video-asset
 /storage/*.key
+/vendor
 .env
 .env.backup
 .phpunit.result.cache
