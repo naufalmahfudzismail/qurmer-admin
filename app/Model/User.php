@@ -11,7 +11,7 @@ use Laravel\Passport\HasApiTokens;
 class User extends Authenticatable
 {
 
-    use HasApiTokens,Notifiable,EntrustUserTrait;
+    use HasApiTokens, Notifiable, EntrustUserTrait;
 
     /**
      * The attributes that are mass assignable.
