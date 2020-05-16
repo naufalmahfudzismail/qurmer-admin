@@ -16,7 +16,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('template/app');
+    return view('dashboard/surat');
 });
 
 //Route::get('/admin', 'AdminController@index');
