@@ -50,7 +50,7 @@ class AuthController extends Controller
     {
         try {
             $checkEmail = User::where('email', $request->email)->first();
-            if (!$checkEmail) {
+            if ($checkEmail) {
                 return SendResponse::fail("Email sudah terdaftar", 400);
             } else {
                 $data = [];
