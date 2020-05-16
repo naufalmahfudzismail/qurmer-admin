@@ -22,7 +22,7 @@ Route::get('surah/{id}', 'API\DataController@getSurahAndAyat');
 Route::get('surah-badge/{id}', 'API\DataController@getSurahBadge');
 Route::post('login','API\AuthController@login');
 Route::post('login-google','API\AuthController@loginProvider');
-Route::post('resgiter','API\AuthController@register');
+Route::post('register','API\AuthController@register');
 
 Route::group(['middleware' => ['auth:api']],  function () {
 
