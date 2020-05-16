@@ -19,7 +19,7 @@ class AuthController extends Controller
             if(!$user){
                 return SendResponse::message('Akun anda tidak terdaftar', 401);
             }else{
-                $check = Hash::check($user->password, $request->password);
+                $check = Hash::check($request->password, $user->password);
                 if(!$check){
                     return SendResponse::message('Password salah', 401);
                 }else{
