@@ -5,6 +5,7 @@
 /public/video-asset
 /storage/*.key
 /vendor
+/config
 .env
 .env.backup
 .phpunit.result.cache
