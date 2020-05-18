@@ -46,6 +46,7 @@ class DataController extends Controller
     public function getAudioBySurah($surah_id){
         try{
             $data['surah_name'] = Surah::find($surah_id)->name;
+            $data['surah_id'] = $surah_id;
             $data['audio'] = Audio::with('surah', $surah_id);
             return SendResponse::success($data, 200);
 
