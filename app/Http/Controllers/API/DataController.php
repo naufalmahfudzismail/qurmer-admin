@@ -43,6 +43,16 @@ class DataController extends Controller
         }
     }
 
+    public function getAllAudioSurah(){
+        try{
+            $data = Audio::with('surah')->get();
+            return SendResponse::success($data, 200);
+
+        }catch(\Exception $e){
+            return SendResponse::fail($e->getMessage(), 500);
+        }
+    }
+
     public function getAudioBySurah($surah_id){
         try{
             $data['surah_name'] = Surah::find($surah_id)->name;

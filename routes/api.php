@@ -20,6 +20,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('surah/{id}', 'API\DataController@getSurahAndAyat');
 Route::get('surah-badge/{id}', 'API\DataController@getSurahBadge');
+Route::get('surah-audio', 'API\DataController@getAllAudioSurah');
+Route::get('surah-audio/{id}', 'API\DataController@getAudioBySurah');
+
 Route::post('login','API\AuthController@login');
 Route::post('login-google','API\AuthController@loginProvider');
 Route::post('register','API\AuthController@register');
