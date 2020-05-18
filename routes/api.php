@@ -24,8 +24,8 @@ Route::post('login','API\AuthController@login');
 Route::post('login-google','API\AuthController@loginProvider');
 Route::post('register','API\AuthController@register');
 
-Route::get('download-audio', 'API\MediaController@downloadAudio');
-Route::get('download-video', 'API\MediaController@downloadVideo');
+Route::get('download-audio/{file}', 'API\MediaController@downloadAudio');
+Route::get('download-video/{file}', 'API\MediaController@downloadVideo');
 
 
 Route::group(['middleware' => ['auth:api']],  function () {
