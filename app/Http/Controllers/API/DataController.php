@@ -46,6 +46,7 @@ class DataController extends Controller
     public function getAllAudioSurah(){
         try{
             $data = Audio::with('surah')->get();
+            $data['ayat'] = Ayat::all();
             return SendResponse::success($data, 200);
 
         }catch(\Exception $e){

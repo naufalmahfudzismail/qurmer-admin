@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\BackOffice;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
-
+use App\Model\Challenge;
 
 class ChallengeController extends Controller
 {
@@ -15,7 +14,7 @@ class ChallengeController extends Controller
      */
     public function index()
     {
-        //
+        $cel = Challenge::all();
     }
 
     /**

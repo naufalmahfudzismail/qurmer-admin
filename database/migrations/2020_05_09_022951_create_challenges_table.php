@@ -16,9 +16,10 @@ class CreateChallengesTable extends Migration
         Schema::create('challenges', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('surah_id')->unsigned();
-            $table->integer('level')->unsigned();
+            $table->integer('type')->unsigned();
             $table->bigInteger('bonus_score');
             $table->boolean('daily');
+            $table->integer('time');
             $table->timestamps();
         });
     }
