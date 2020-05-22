@@ -17,11 +17,11 @@ class AuthController extends Controller
         try {
             $user = User::where('email', $request->email)->first();
             if(!$user){
-                return SendResponse::message('Akun anda tidak terdaftar', 200);
+                return SendResponse::fail('Akun anda tidak terdaftar', 200);
             }else{
                 $check = Hash::check($request->password, $user->password);
                 if(!$check){
-                    return SendResponse::message('Password salah', 200);
+                    return SendResponse::fail('Password salah', 200);
                 }else{
                     $data = [];
                     $data['token'] = $user->createToken('nApp')->accessToken;
