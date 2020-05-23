@@ -14,7 +14,7 @@ class ChallengeController extends Controller
      */
     public function index()
     {
-        $cel = Challenge::all();
+        return view('dashboard.challenge.index');
     }
 
     /**
@@ -24,7 +24,21 @@ class ChallengeController extends Controller
      */
     public function create()
     {
-        //
+        
+    }
+
+    public function getData(){
+        $data = Challenge::with('level')->with('surah');
+        dd($data);
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->addColumn('action', function ($row) {
+                $button = '<a href="/master/article/' . $row['id'] . '/edit"><button class="btn btn-warning btn-sm edit" style="float:left;" id="' . $row['id'] . '"><i class="fa fa-pencil"></i> Edit</button></a>';
+                $button .= '<a href="javascript:;"><button class="btn btn-danger btn-sm delete" id="' . $row['id'] . '"><i class="fa fa-trash"></i> Delete</button></a>';
+                return $button;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
 
     /**

@@ -16,4 +16,9 @@ class Challenge extends Model
     public function surah(){
         return $this->belongsTo('App\Model\Surah', $this->surah_id);
     }
+
+    public function level(){
+        return $this->belongsTo('App\Model\Level'. $this->level_id);
+    }
+
 }

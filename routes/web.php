@@ -41,3 +41,4 @@ Route::get('/quote-data', 'BackOffice\QuoteController@getData');
 
 Route::get('/audio-data', 'BackOffice\AudioController@getData');
 Route::get('/video-data', 'BackOffice\VideoController@getData');
+Route::get('/challenge-data', 'BackOffice\ChallengeController@getData');
