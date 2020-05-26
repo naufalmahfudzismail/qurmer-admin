@@ -124,9 +124,10 @@
 
 @section('script')
 <script>
-    $(document).ready(function() {
-    $('#table').DataTable();} );
     $(function () {
+        $(document).ready(function() {
+        $('#table-index').DataTable();
+        } );
         var id;
         $(document).on('click', '.delete', function(){
             event.preventDefault();
