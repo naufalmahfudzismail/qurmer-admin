@@ -112,6 +112,7 @@
         load_data();
         function load_data() {
             var ajaxUrl = "{{ url('/challenge-data') }}";
+            var score = 'bonus_score' + 'score' ;
             $('#table-index').DataTable({
                 processing: true,
                 serverSide: true,
@@ -120,7 +121,7 @@
                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable:false },
                     { data: 'nama'},
                     { data: 'name' },
-                    { data: 'bonus_score' + 'score' },
+                    { data: score},
                     {data : 'time'},
                     { data: 'action', name: 'action'}
                 ],
