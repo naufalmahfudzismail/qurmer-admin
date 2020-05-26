@@ -33,7 +33,7 @@ class ChallengeController extends Controller
 
     public function getData(){
         $data = Challenge::join('levels', 'challenges.level_id', 'levels.id')
-        ->join('surahs', 'challengs.surah_id', 'surahs.id')->get();
+        ->join('surahs', 'challenges.surah_id', 'surahs.id')->get();
 
         dd($data);
 
