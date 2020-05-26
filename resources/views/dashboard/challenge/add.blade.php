@@ -69,7 +69,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="time" class="col-md-4 col-form-label text-md-right">Waktu Challenge</label>
+                            <label for="time" class="col-md-4 col-form-label text-md-right">Waktu Challenge dalam Menit</label>
                             <div class="col-md-12">
                                 <input class="form-control" type="number" id="time" name="time" min="1" max="60">
                             </div>

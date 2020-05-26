@@ -119,8 +119,8 @@
                 columns: [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable:false },
                     { data: 'nama'},
-                    { data: 'name' },
-                    { data: 'bonus_score' +  data: 'score' },
+                    { data: 'name'},
+                    { data: 'point'},
                     {data : 'time'},
                     { data: 'action', name: 'action'}
                 ],
