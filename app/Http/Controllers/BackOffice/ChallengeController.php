@@ -46,6 +46,13 @@ class ChallengeController extends Controller
             ->make(true);
     }
 
+
+    public function test(){
+        $data = Challenge::select('challenges.*', 'surahs.nama', 'levels.id', 'levels.name', 'levels.bonus_score')->join('levels', 'challenges.level_id', 'levels.id')
+        ->join('surahs', 'challenges.surah_id', 'surahs.id');
+        dd($data);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
