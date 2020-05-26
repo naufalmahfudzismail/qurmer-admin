@@ -40,8 +40,9 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
+                        <tbody>
                         @foreach($datas as $data)
-                        <tr>
+                        <tr class="item{{$data->id}}">
                             <td>{{$data->id}}</td>
                             <td>{{$data->nama}}</td>
                             <td>{{$data->level}}</td>
@@ -53,6 +54,7 @@
                             
                         </tr>
                         @endforeach
+                        </tbody>
                     </table>
                     </div>
                 </div>
@@ -122,6 +124,8 @@
 
 @section('script')
 <script>
+    $(document).ready(function() {
+    $('#table').DataTable();} );
     $(function () {
         var id;
         $(document).on('click', '.delete', function(){
