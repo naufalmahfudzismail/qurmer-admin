@@ -51,11 +51,11 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Pilih Level</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Pilih Tipe Challenge</label>
                             <div class="col-md-6">
                                 <select id="level_id" name="level_id" style="padding:6px;width:100%">
                                     @foreach($levels as $level)
-                                    <option value="{{$level['id']}}">"Level "{{$level['id']}}:{{$level['name']}}</option>
+                                    <option value="{{$level['id']}}">Level {{$level['id']}} : {{$level['name']}}</option>
                                     @endforeach
                                 </select>
                             </div>

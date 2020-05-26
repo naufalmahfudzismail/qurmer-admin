@@ -36,8 +36,8 @@
                                 <th>Level</th>
                                 <th>Nama challenge</th>
                                 <th>Score</th>
-                                <th>Waktu</th>
-                                <th>Action</th>
+                                <th>Waktu (Menit)</th>
+                                <th>Operasi</th>
                             </tr>
                         </thead>
                         <tbody>
