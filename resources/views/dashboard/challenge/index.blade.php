@@ -33,6 +33,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Surat</th>
+                                <th>Level</th>
                                 <th>Nama challenge</th>
                                 <th>Score</th>
                                 <th>Waktu</th>
@@ -43,6 +44,7 @@
                         <tr>
                             <td>{{$data->id}}</td>
                             <td>{{$data->nama}}</td>
+                            <td>{{$data->level}}</td>
                             <td>{{$data->name}}</td>
                             <td>{{$data->bonus_score + $data->score}}</td>
                             <td>{{$data->time}}</td>

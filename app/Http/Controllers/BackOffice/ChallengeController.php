@@ -17,7 +17,7 @@ class ChallengeController extends Controller
      */
     public function index()
     {
-        $datas = Challenge::select('challenges.*', 'surahs.nama', 'levels.id', 'levels.name', 'levels.bonus_score')->join('levels', 'challenges.level_id', 'levels.id')
+        $datas = Challenge::select('challenges.*', 'surahs.nama', 'levels.id as level', 'levels.name', 'levels.bonus_score')->join('levels', 'challenges.level_id', 'levels.id')
         ->join('surahs', 'challenges.surah_id', 'surahs.id')->get();
 
         return view('dashboard.challenge.index', compact('datas'));
