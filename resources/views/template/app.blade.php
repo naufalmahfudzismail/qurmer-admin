@@ -102,7 +102,7 @@
             <!-- BEGIN LOGO -->
             <div class="page-logo">
                 <a href="{{url('/master')}}">
-                    <img src="{{asset('image/dashboard/logo.png')}}" alt="logo" class="logo-default" width="175px;"
+                    <img src="{{asset('image/dashboard/logo.png')}}" alt="logo" class="logo-default" height = "100px;" width="175px;"
                         style="padding-top:5px" /> </a>
             </div>
 
