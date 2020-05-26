@@ -118,10 +118,10 @@
                 ajax: ajaxUrl,
                 columns: [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable:false },
-                    { data: 'surahs.nama'},
-                    { data: 'levels.name' },
-                    { data: 'levels.bonus_score' + 'challenges.score' },
-                    {data : 'challenges.time'},
+                    { data: 'nama'},
+                    { data: 'name' },
+                    { data: 'bonus_score' + 'score' },
+                    {data : 'time'},
                     { data: 'action', name: 'action'}
                 ],
                 columnDefs: [{
