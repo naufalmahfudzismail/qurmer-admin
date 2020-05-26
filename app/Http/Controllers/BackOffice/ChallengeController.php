@@ -33,7 +33,7 @@ class ChallengeController extends Controller
     }
 
     public function getData(){
-        $data = Challenge::join('levels', 'challenges.level_id', 'levels.id')
+        $data = Challenge::select('challenges.*', 'surahs.nama', 'levels.id', 'levels.name', 'levels.bonus_score')->join('levels', 'challenges.level_id', 'levels.id')
         ->join('surahs', 'challenges.surah_id', 'surahs.id');
         return DataTables::of($data)
             ->addIndexColumn()
