@@ -52,12 +52,20 @@ class ChallengeController extends Controller
      */
     public function store(Request $request)
     {
+
+        $daily = $request['daily'];
+        if($daily == "on"){
+            $daily = true;
+        }else{
+            $daily = false;
+        }
+
         $challenge = new Challenge();
         $challenge->level_id = $request['level_id'];
         $challenge->surah_id = $request['surah_id'];
         $challenge->score = $request['score'];
         $challenge->time = $request['time'];
-        $challenge->daily = $request['daily'];
+        $challenge->daily = $daily;
         $challenge->save();
     
         return redirect()->route('challenge.index');
