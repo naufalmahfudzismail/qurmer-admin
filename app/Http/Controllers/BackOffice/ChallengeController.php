@@ -27,8 +27,8 @@ class ChallengeController extends Controller
     public function create()
     {
         $surahs = Surah::orderBy('id')->get();
-        $level = Level::orderBy('id')->get();
-        return view('dashboard.challenge.add', compact('surahs', 'level'));
+        $levels = Level::orderBy('id')->get();
+        return view('dashboard.challenge.add', compact('surahs', 'levels'));
     }
 
     public function getData(){
