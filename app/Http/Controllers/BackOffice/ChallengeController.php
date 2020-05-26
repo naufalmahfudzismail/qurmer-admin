@@ -34,9 +34,8 @@ class ChallengeController extends Controller
 
     public function getData(){
         $data = Challenge::join('levels', 'challenges.level_id', 'levels.id')
-        ->join('surahs', 'challenges.surah_id', 'surahs.id')->get();
-        dd($data);
-        /*return DataTables::of($data)
+        ->join('surahs', 'challenges.surah_id', 'surahs.id');
+        return DataTables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($row) {
                 $button = '<a href="/master/article/' . $row['id'] . '/edit"><button class="btn btn-warning btn-sm edit" style="float:left;" id="' . $row['id'] . '"><i class="fa fa-pencil"></i> Edit</button></a>';
@@ -44,7 +43,7 @@ class ChallengeController extends Controller
                 return $button;
             })
             ->rawColumns(['action'])
-            ->make(true);*/
+            ->make(true);
     }
 
     /**
