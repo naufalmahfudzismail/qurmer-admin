@@ -118,7 +118,7 @@
                 ajax: ajaxUrl,
                 columns: [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable:false },
-                    { data: 'surahs.name'},
+                    { data: 'surahs.nama'},
                     { data: 'levels.name' },
                     { data: 'levels.bonus_score' + 'challenges.score' },
                     {data : 'challenges.time'},
