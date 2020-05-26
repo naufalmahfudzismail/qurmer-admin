@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\BackOffice;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\video;
 use App\Model\Surah;
 use App\Model\Video;
 use DataTables;
