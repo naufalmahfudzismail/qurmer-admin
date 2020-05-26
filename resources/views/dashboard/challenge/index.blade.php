@@ -121,7 +121,7 @@
                     { data: 'surahs.name'},
                     { data: 'levels.name' },
                     { data: 'levels.bonus_score' + 'challenges.score' },
-                    {data : 'challenges.time'}
+                    {data : 'challenges.time'},
                     { data: 'action', name: 'action'}
                 ],
                 columnDefs: [{
