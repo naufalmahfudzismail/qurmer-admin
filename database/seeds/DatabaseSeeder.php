@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SurahTableSeeder::class);
         $this->call(AyahTableSeeder::class);
         $this->call(AudioTableSeeder::class);
+        $this->call(LevelTableSeeder::class);
     }
 }
