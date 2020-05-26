@@ -19,7 +19,7 @@ class CreateSurahsTable extends Migration
             $table->string('nama');
             $table->string('urutan');
             $table->integer('jumlah_ayat');
-            $table->integer('basic_score');
+            $table->integer('basic_score')->nullable();
             $table->timestamps();
         });
     }
