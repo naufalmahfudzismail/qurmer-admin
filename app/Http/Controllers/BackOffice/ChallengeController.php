@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Level;
 use App\Model\Challenge;
 use App\Model\Surah;
+use Yajra\DataTables\Facades\DataTables;
 
 class ChallengeController extends Controller
 {
