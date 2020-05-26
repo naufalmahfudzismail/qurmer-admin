@@ -28,8 +28,7 @@ class ChallengeController extends Controller
     }
 
     public function getData(){
-        $data = Challenge::with('level')->with('surah');
-        dd($data);
+        $data = Challenge::with('multiJoin');
         return DataTables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($row) {

@@ -21,4 +21,9 @@ class Challenge extends Model
         return $this->belongsTo('App\Model\Level'. $this->level_id);
     }
 
+    public function multiJoin(){
+        return $this::join('levels as l', 'challenges.level_id', 'l.id')
+        ->join('surahs as s', 'challengs.surah_id', 's.id')->get();
+    }
+
 }
