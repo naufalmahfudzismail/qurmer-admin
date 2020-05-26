@@ -46,8 +46,9 @@
                             <td>{{$data->name}}</td>
                             <td>{{$data->bonus_score + $data->score}}</td>
                             <td>{{$data->time}}</td>
-                            <td><a href="/challenge/' . {{$data['id']}} . '/edit"><button class="btn btn-warning btn-sm edit" style="float:left;" id="' . {{$data['id']}} . '"><i class="fa fa-pencil"></i> Edit</button></a>';
-                            <td><a href="javascript:;"><button class="btn btn-danger btn-sm delete" id="' . {{$data['id']}} . '"><i class="fa fa-trash"></i>Hapus</button></a>';</td>
+                            <td><a href="/challenge/' . {{$data['id']}} . '/edit"><button class="btn btn-warning btn-sm edit" style="float:left;" id="' . {{$data['id']}} . '"><i class="fa fa-pencil"></i> Edit</button>
+                            </a>  <a href="javascript:;"><button class="btn btn-danger btn-sm delete" id="' . {{$data['id']}} . '"><i class="fa fa-trash"></i>Hapus</button></a></td>
+                            
                         </tr>
                         @endforeach
                     </table>
