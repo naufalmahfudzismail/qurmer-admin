@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\BackOffice;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\Quote;
+use App\Model\video;
 use App\Model\Surah;
 use App\Model\Video;
 use DataTables;
@@ -37,7 +37,7 @@ class VideoController extends Controller
             </video>';
         })
         ->addColumn('action', function($row){
-            $button = '<a href="/quote/'.$row['id'].'/edit"><button class="btn btn-warning btn-sm edit" style="float:left;" id="'.$row['id'].'"><i class="fa fa-pencil"></i> Edit</button></a>';
+            $button = '<a href="/video/'.$row['id'].'/edit"><button class="btn btn-warning btn-sm edit" style="float:left;" id="'.$row['id'].'"><i class="fa fa-pencil"></i> Edit</button></a>';
             $button .= '<a href="javascript:;"><button class="btn btn-danger btn-sm delete" id="'.$row['id'].'"><i class="fa fa-trash"></i> Delete</button></a>';
             return $button;
         })

@@ -6,7 +6,7 @@
         <i class="fa fa-circle"></i>
     </li>
     <li>
-        <a href="/audio">Video</a>
+        <a href="/video">Video</a>
         <i class="fa fa-circle"></i>
     </li>
     <li>
@@ -27,7 +27,7 @@
     <div class="col-md-12 box-shadow box-radius" style="background:#fff;">
         <div class="portlet">
             <div class="portlet-title">
-                <div class="caption" style="font-weight:bolder;padding:20px 0;">Add Video</div>
+                <div class="caption" style="font-weight:bolder;padding:20px 0;">Tambah Video</div>
                 <div class="tools">
                     <a href="javascript:;" class="collapse"> </a>
                     <a href="#portlet-config" data-toggle="modal" class="config"> </a>

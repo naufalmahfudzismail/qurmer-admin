@@ -35,6 +35,7 @@
                                 <th>Surat</th>
                                 <th>Nama challenge</th>
                                 <th>Score</th>
+                                <th>Waktu</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -117,10 +118,10 @@
                 ajax: ajaxUrl,
                 columns: [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable:false },
-                    { data: ''},
-                    { data: 'nama' },
-                    { data: 'jumlah_ayat' },
-                    { data: 'basic_score' },
+                    { data: 'surahs.name'},
+                    { data: 'levels.name' },
+                    { data: 'levels.bonus_score' + 'challenges.score' },
+                    {data : 'challenges.time'}
                     { data: 'action', name: 'action'}
                 ],
                 columnDefs: [{

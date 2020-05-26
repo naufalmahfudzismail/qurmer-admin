@@ -27,7 +27,7 @@
     <div class="col-md-12 box-shadow box-radius" style="background:#fff;">
         <div class="portlet">
             <div class="portlet-title">
-                <div class="caption" style="font-weight:bolder;padding:20px 0;">Add Article</div>
+                <div class="caption" style="font-weight:bolder;padding:20px 0;">Tambah Audio</div>
                 <div class="tools">
                     <a href="javascript:;" class="collapse"> </a>
                     <a href="#portlet-config" data-toggle="modal" class="config"> </a>

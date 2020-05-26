@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\BackOffice;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Level;
 use App\Model\Challenge;
+use App\Model\Surah;
 
 class ChallengeController extends Controller
 {
@@ -24,7 +26,9 @@ class ChallengeController extends Controller
      */
     public function create()
     {
-        
+        $surahs = Surah::orderBy('id')->get();
+        $level = Level::orderBy('id')->get();
+        return view('dashboard.challenge.add', compact('surahs', 'level'));
     }
 
     public function getData(){
@@ -48,7 +52,15 @@ class ChallengeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $challenge = new Challenge();
+        $challenge->level_id = $request['level_id'];
+        $challenge->surah_id = $request['surah_id'];
+        $challenge->score = $request['score'];
+        $challenge->time = $request['time'];
+        $challenge->daily = $request['daily'];
+        $challenge->save();
+    
+        return redirect()->route('challenge.index');
     }
 
     /**
