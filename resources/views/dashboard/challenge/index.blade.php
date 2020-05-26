@@ -39,6 +39,17 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
+                        @foreach($datas as $data)
+                        <tr>
+                            <td>{{$data->id}}</td>
+                            <td>{{$data->nama}}</td>
+                            <td>{{$data->name}}</td>
+                            <td>{{$data->bonus_score + $data->score}}</td>
+                            <td>{{$data->time}}</td>
+                            <td><a href="/challenge/' . {{$data['id']}} . '/edit"><button class="btn btn-warning btn-sm edit" style="float:left;" id="' . {{$data['id']}} . '"><i class="fa fa-pencil"></i> Edit</button></a>';
+                            <td><a href="javascript:;"><button class="btn btn-danger btn-sm delete" id="' . {{$data['id']}} . '"><i class="fa fa-trash"></i>Hapus</button></a>';</td>
+                        </tr>
+                        @endforeach
                     </table>
                     </div>
                 </div>
@@ -109,36 +120,6 @@
 @section('script')
 <script>
     $(function () {
-        load_data();
-        function load_data() {
-            var ajaxUrl = "{{ url('/challenge-data') }}";
-            $('#table-index').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: ajaxUrl,
-                columns: [
-                    { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable:false },
-                    { data: 'nama'},
-                    { data: 'name'},
-                    { data: 'point'},
-                    {data : 'time'},
-                    { data: 'action', name: 'action'}
-                ],
-                columnDefs: [{
-                    targets: 4,
-                    render: function ( data, type, row ) {
-                        if(data != null && data.length > 125){
-                            data = data.substr( 0, 125 );
-                            data = data+"...";
-                            return data;
-                        }else{
-                            return data;
-                        }
-                    }
-                }],
-                "sDom": '<"row view-filter"<"col-sm-12"<"pull-left"l><"pull-right"f><"clearfix">>>rt<"row view-pager"<"col-sm-6"<"text-left"i>><"col-sm-6"<"text-right"p>>>'
-            });
-        };
         var id;
         $(document).on('click', '.delete', function(){
             event.preventDefault();
@@ -153,7 +134,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                 type: "DELETE",
-                url:"{{url('master/article')}}"+'/'+id,
+                url:"{{url('challenge')}}"+'/'+id,
                 beforeSend:function(){
                     $('#ok_button').text('Deleting...');;
                 },

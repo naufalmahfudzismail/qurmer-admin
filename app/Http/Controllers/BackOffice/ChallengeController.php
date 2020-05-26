@@ -17,7 +17,10 @@ class ChallengeController extends Controller
      */
     public function index()
     {
-        return view('dashboard.challenge.index');
+        $datas = Challenge::select('challenges.*', 'surahs.nama', 'levels.id', 'levels.name', 'levels.bonus_score')->join('levels', 'challenges.level_id', 'levels.id')
+        ->join('surahs', 'challenges.surah_id', 'surahs.id')->get();
+
+        return view('dashboard.challenge.index', compact('datas'));
     }
 
     /**
@@ -32,21 +35,6 @@ class ChallengeController extends Controller
         return view('dashboard.challenge.add', compact('surahs', 'levels'));
     }
 
-    public function getData(){
-        $data = Challenge::select('challenges.*', 'surahs.nama', 'levels.id', 'levels.name',
-         '(levels.bonus_score + challenges.score) AS point')->leftjoin('levels', 'challenges.level_id', 'levels.id')
-        ->leftjoin('surahs', 'challenges.surah_id', 'surahs.id')->get();
-
-        return DataTables::of($data)
-            ->addIndexColumn()
-            ->addColumn('action', function ($row) {
-                $button = '<a href="/master/article/' . $row['id'] . '/edit"><button class="btn btn-warning btn-sm edit" style="float:left;" id="' . $row['id'] . '"><i class="fa fa-pencil"></i> Edit</button></a>';
-                $button .= '<a href="javascript:;"><button class="btn btn-danger btn-sm delete" id="' . $row['id'] . '"><i class="fa fa-trash"></i> Delete</button></a>';
-                return $button;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
-    }
 
 
     public function test(){
