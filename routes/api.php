@@ -30,6 +30,9 @@ Route::post('register','API\AuthController@register');
 Route::get('download-audio/{file}', 'API\MediaController@downloadAudio');
 Route::get('download-video/{file}', 'API\MediaController@downloadVideo');
 
+Route::get('challenge', 'API\ChallengeController@getChallenge' );
+Route::get('challenge-daily', 'API\ChallengeController@getDailyChallenge');
+
 
 Route::group(['middleware' => ['auth:api']],  function () {
 

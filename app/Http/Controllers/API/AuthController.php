@@ -40,7 +40,7 @@ class AuthController extends Controller
             $data = [];
             $user = User::where('email', $request->email)->first();
             if (!$user) {
-                $user = self::registerProvider($request);
+                $user = $this->registerProvider($request);
                 $data['created_new'] = true;
             }else{
                 $data['created_new'] = false;
