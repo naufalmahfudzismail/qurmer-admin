@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Audio;
 use App\Model\Ayat;
 use App\Model\Badge;
+use App\Model\Quote;
 use App\Services\SendResponse;
 use App\Model\Surah;
 use Faker\Provider\Base;
