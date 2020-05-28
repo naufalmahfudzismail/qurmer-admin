@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Model\Challenge;
+use App\Services\SendResponse;
 
 class ChallengeController extends Controller{
 
