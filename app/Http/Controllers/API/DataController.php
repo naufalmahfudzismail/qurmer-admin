@@ -36,7 +36,7 @@ class DataController extends Controller
 
     public function getQuote(){
         try{
-            $data['quote'] = Quote::all();
+            $data = Quote::all();
             $url = 'http://qurmer.skripsi-tik.xyz/image/quote/';
             foreach($data as $dt){
                 $dt['image_url'] = $url.$dt->image;
