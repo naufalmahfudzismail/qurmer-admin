@@ -13,7 +13,7 @@ class CreateProgressesTable extends Migration
      */
     public function up()
     {
-        Schema::create('progresses', function (Blueprint $table) {
+        Schema::create('progress', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('surah_id')->unsigned();
