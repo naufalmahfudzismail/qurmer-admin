@@ -73,6 +73,7 @@ class AuthController extends Controller
                 $data['google_id'] = null;
                 $data['password'] = Hash::make($request['password']);
                 $user = User::create($data);
+                $data['user'] = $user;
                 //$data['token'] =  $user->createToken('nApp')->accessToken;
 
                 return SendResponse::success($data, 200);

@@ -18,7 +18,7 @@ class CreateProgressesTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('surah_id')->unsigned();
             $table->bigInteger('challenge_id')->nullable();
-            $table->bigInteger('task_id')->nullable();
+            $table->boolean('is_done')->nullable();
             $table->timestamps();
         });
     }

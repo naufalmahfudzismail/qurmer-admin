@@ -16,5 +16,9 @@ class Progress extends Model
     {
         return $this->belongsTo('App\Model\User', $this->user_id);
     }
-    //
+    
+    public function challenge()
+    {
+        return $this->belongsTo('App\Model\Challenge', $this->challenge_id);
+    }
 }
