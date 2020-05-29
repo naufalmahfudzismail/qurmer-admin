@@ -8,7 +8,7 @@ use App\Model\History;
 use App\Model\Progress;
 use App\Services\SendResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 
 class ChallengeController extends Controller{
 
@@ -34,6 +34,7 @@ class ChallengeController extends Controller{
 
     public function joinChallenge(Request $request){
         try{
+
             $data = [];
             $data_history = [];
 
