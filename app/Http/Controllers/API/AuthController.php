@@ -37,6 +37,7 @@ class AuthController extends Controller
     public function loginProvider(Request $request, $provider)
     {
         try {
+
             $data = [];
             $user = User::where('email', $request->email)->first();
             if (!$user) {
@@ -47,7 +48,9 @@ class AuthController extends Controller
             }
             $data['token'] =  $user->createToken('nApp')->accessToken;
             $data['user'] = $user;
+
             return SendResponse::success($data, 200);
+
         } catch (\Exception $e) {
             return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
         }
@@ -72,10 +75,9 @@ class AuthController extends Controller
                 $data['foto_profil'] = null;
                 $data['google_id'] = null;
                 $data['password'] = Hash::make($request['password']);
-                $data['token'] =  $user->createToken('nApp')->accessToken;
                 $user = User::create($data);
                 $data['user'] = $user;
-               
+                //$data['token'] =  $user->createToken('nApp')->accessToken;
 
                 return SendResponse::success($data, 200);
             }
