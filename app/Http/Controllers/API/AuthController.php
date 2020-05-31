@@ -64,7 +64,7 @@ class AuthController extends Controller
                 ->orWhere('username', $request->email)->first();
            
             if ($checkEmail) {
-                return SendResponse::fail("Email sudah terdaftar", 400);
+                return SendResponse::fail("Akun sudah terdaftar", 400);
             } else {
                 $data = [];
                 $data['email'] = $request['email'];
