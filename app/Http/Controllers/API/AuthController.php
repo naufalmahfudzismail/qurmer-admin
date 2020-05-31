@@ -16,14 +16,14 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         try {
-            $user = User::where('email', $request->email)->orWhere('username', $request->email);
-            if(!$user){
+            $user = User::where('email', $request->email)->orWhere('username', $request->email)->first();
+            if (!$user) {
                 return SendResponse::fail('Akun anda tidak terdaftar', 200);
-            }else{
+            } else {
                 $check = Hash::check($request->password, $user->password);
-                if(!$check){
+                if (!$check) {
                     return SendResponse::fail('Password salah', 200);
-                }else{
+                } else {
                     $data = [];
                     $data['token'] = $user->createToken('nApp')->accessToken;
                     $data['user'] = $user;
@@ -44,14 +44,13 @@ class AuthController extends Controller
             if (!$user) {
                 $user = $this->registerProvider($request);
                 $data['created_new'] = true;
-            }else{
+            } else {
                 $data['created_new'] = false;
             }
             $data['token'] =  $user->createToken('nApp')->accessToken;
             $data['user'] = $user;
 
             return SendResponse::success($data, 200);
-
         } catch (\Exception $e) {
             return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
         }
@@ -61,8 +60,9 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         try {
-            $checkEmail = User::where('email', $request->email)->first();
-            //$request = $request->all();
+            $checkEmail = User::where('email', $request->email)
+                ->orWhere('username', $request->email)->first();
+           
             if ($checkEmail) {
                 return SendResponse::fail("Email sudah terdaftar", 400);
             } else {
