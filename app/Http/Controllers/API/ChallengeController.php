@@ -100,7 +100,6 @@ class ChallengeController extends Controller
         $level_score = Level::find($challenge->level_id)->first()->bonus_score;
 
         $challenge_score = $challenge->score;
-        dd($level_score);
         $final_score = $challenge_score + $level_score;
 
         return $final_score;
