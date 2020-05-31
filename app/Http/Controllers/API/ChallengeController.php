@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Level;
+use App\Model\Level;
 use App\Model\Challenge;
 use App\Model\History;
 use App\Model\Progress;
