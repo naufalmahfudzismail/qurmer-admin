@@ -111,12 +111,11 @@ class AuthController extends Controller
     public function checkUsername($username)
     {
         try{
-            $data = [];
             $user = User::where('username', $username)->first();
             if($user){
-               $data['terdaftar'] = true;
+               $data = true;
             }else{
-                $data['terdaftar'] = false;
+                $data = false;
             }
             return SendResponse::success($data, 200);
         }catch(\Exception $e){
