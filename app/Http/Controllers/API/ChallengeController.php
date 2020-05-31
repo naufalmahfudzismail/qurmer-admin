@@ -71,27 +71,24 @@ class ChallengeController extends Controller
     public function afterChallenge(Request $request)
     {
         try {
-
             $data = [];
-
             $progress = Progress::find($request['progress_id']);
             $score = Score::where('user_id', Auth::User()->id)->first();
             $final_score = $this->getTotalScoreChallenge($request['challenge_id']);
-
-            $progress->is_done = true;
-
-            $score->total_score = $score->total_score + $final_score;
-
-
-            $result = $progress->save();
-            $result_score = $score->save();
-
-            if ($result and $result_score) {
-                $data['progress_status'] = $progress->is_done;
-                $data['final_score'] = $score->total_score;
-                return SendResponse::success($data, 200);
+            if ($progress->is_done) {
+                return SendResponse::fail('Challenge Sudah Dilakukan', 404);
             } else {
-                return SendResponse::fail('Gagal', 404);
+                $progress->is_done = true;
+                $score->total_score = $score->total_score + $final_score;
+                $result = $progress->save();
+                $result_score = $score->save();
+                if ($result and $result_score) {
+                    $data['progress_status'] = $progress->is_done;
+                    $data['final_score'] = $score->total_score;
+                    return SendResponse::success($data, 200);
+                } else {
+                    return SendResponse::fail('Gagal, coba beberapa saat lagi', 404);
+                }
             }
         } catch (\Exception $e) {
             return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
