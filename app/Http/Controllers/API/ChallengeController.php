@@ -75,9 +75,9 @@ class ChallengeController extends Controller
             $data = [];
 
             $progress = Progress::find($request['progress_id']);
-            $score = Score::where('user_id',Auth::User()->id)->first();
+            $score = Score::where('user_id', Auth::User()->id)->first();
             $final_score = $this->getTotalScoreChallenge($request['challenge_id']);
-           
+
             $progress->is_done = true;
             $score->total_score = $score->total_score + $final_score;
 
@@ -87,14 +87,16 @@ class ChallengeController extends Controller
             $data['result'] = $result;
             $data['score'] = $result_score;
 
-            return SendResponse::success($result, 200);
+            return SendResponse::success($data, 200);
+
         } catch (\Exception $e) {
             return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
         }
     }
 
 
-    function getTotalScoreChallenge($challenge_id){
+    function getTotalScoreChallenge($challenge_id)
+    {
 
         $challenge = Challenge::find($challenge_id);
         $level_score = Level::find($challenge->level_id)->bonus_score;
