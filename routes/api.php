@@ -26,6 +26,7 @@ Route::get('surah-audio/{id}', 'API\DataController@getAudioBySurah');
 Route::post('login','API\AuthController@login');
 Route::post('login-google','API\AuthController@loginProvider');
 Route::post('register','API\AuthController@register');
+Routre::get('username/{username}', 'API\AuthController@checkUsername');
 
 Route::get('download-audio/{file}', 'API\MediaController@downloadAudio');
 Route::get('download-video/{file}', 'API\MediaController@downloadVideo');

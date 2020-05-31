@@ -60,9 +60,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         try {
-            $checkEmail = User::where('email', $request->email)
-                ->orWhere('username', $request->email)->first();
-           
+            $checkEmail = User::where('email', $request->email)->first();
             if ($checkEmail) {
                 return SendResponse::fail("Akun sudah terdaftar", 400);
             } else {
@@ -110,7 +108,19 @@ class AuthController extends Controller
         return $user;
     }
 
-    public function userData()
+    public function checkUsername($username)
     {
+        try{
+            $data = [];
+            $user = User::where('username', $username)->first();
+            if($user){
+               $data['terdaftar'] = true;
+            }else{
+                $data['terdaftar'] = false;
+            }
+            return SendResponse::success($data, 200);
+        }catch(\Exception $e){
+            return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
+        }
     }
 }
