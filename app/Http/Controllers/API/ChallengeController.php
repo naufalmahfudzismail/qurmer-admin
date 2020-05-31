@@ -79,16 +79,20 @@ class ChallengeController extends Controller
             $final_score = $this->getTotalScoreChallenge($request['challenge_id']);
 
             $progress->is_done = true;
+
             $score->total_score = $score->total_score + $final_score;
+
 
             $result = $progress->save();
             $result_score = $score->save();
 
-            $data['result'] = $result;
-            $data['score'] = $result_score;
-
-            return SendResponse::success($data, 200);
-
+            if ($result and $result_score) {
+                $data['progress_status'] = $progress->is_done;
+                $data['final_score'] = $score->total_score;
+                return SendResponse::success($data, 200);
+            } else {
+                return SendResponse::fail('Gagal', 404);
+            }
         } catch (\Exception $e) {
             return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
         }
