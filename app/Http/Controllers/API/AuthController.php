@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Model\Score;
 use App\Model\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
@@ -76,8 +77,13 @@ class AuthController extends Controller
                 $data['google_id'] = null;
                 $data['password'] = Hash::make($request['password']);
                 $user = User::create($data);
+                $score = Score::create([
+                    'user_id' => $user->id,
+                    'total_score' => 0
+                ]);
+
                 $data['user'] = $user;
-                //$data['token'] =  $user->createToken('nApp')->accessToken;
+                $data['score'] = $score;
 
                 return SendResponse::success($data, 200);
             }

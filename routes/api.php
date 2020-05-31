@@ -37,8 +37,10 @@ Route::get('challenge-daily', 'API\ChallengeController@getDailyChallenge');
 Route::get('quote', 'API\DataController@getQuote');
 
 Route::group(['middleware' => ['auth:api']],  function () {
-    
+
     Route::post('challenge-join', 'API\ChallengeController@joinChallenge');
+    Route::post('challenge-done', 'API\ChallengeController@afterChallenge');
+    Route::post('audio-history', 'API\PlayListController@recapHistory');
 
 });
 
