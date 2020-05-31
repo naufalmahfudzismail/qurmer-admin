@@ -75,7 +75,7 @@ class ChallengeController extends Controller
             $data = [];
 
             $progress = Progress::find($request['progress_id']);
-            $score = Score::find(Auth::User()->id);
+            $score = Score::where('user_id',Auth::User()->id)->first();
             $final_score = $this->getTotalScoreChallenge($request['challenge_id']);
            
             $progress->is_done = true;
