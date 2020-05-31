@@ -98,14 +98,10 @@ class ChallengeController extends Controller
 
     function getTotalScoreChallenge($challenge_id)
     {
-
         $challenge = Challenge::find($challenge_id);
         $level_score = Level::find($challenge->level_id)->bonus_score;
-
         $challenge_score = $challenge->score;
-
         $final_score = $challenge_score + $level_score;
-
         return $final_score;
     }
 }

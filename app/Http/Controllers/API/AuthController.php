@@ -16,7 +16,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         try {
-            $user = User::where('email', $request->email)->first();
+            $user = User::where('email', $request->email)->orWhere('username', $request->email);
             if(!$user){
                 return SendResponse::fail('Akun anda tidak terdaftar', 200);
             }else{
@@ -75,6 +75,7 @@ class AuthController extends Controller
                 $data['gender'] = $request['gender'];
                 $data['foto_profil'] = null;
                 $data['google_id'] = null;
+                $data['username'] = $request['username'];
                 $data['password'] = Hash::make($request['password']);
                 $user = User::create($data);
                 $score = Score::create([

@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Quote;
 use DataTables;
+use Illuminate\Support\Str;
 
 class QuoteController extends Controller
 {
@@ -55,7 +56,7 @@ class QuoteController extends Controller
     {
         if($request->file('image')){
             $file = $request->file('image');
-            $fileName = str_random(32).'.'. $file->getClientOriginalExtension();
+            $fileName = Str::random(32).'.'. $file->getClientOriginalExtension();
             $file->move(public_path('image/quote'), $fileName);
         }else{
             $fileName = null;
