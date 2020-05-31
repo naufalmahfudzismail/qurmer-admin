@@ -110,15 +110,17 @@ class AuthController extends Controller
 
     public function checkUsername($username)
     {
-        try{
+        try {
+            $data = [];
             $user = User::where('username', $username)->first();
-            if($user){
-               $data = true;
-            }else{
-                $data = false;
+            $data['username'] = $username;
+            if ($user) {
+                $data['terdaftar'] = true;
+            } else {
+                $data['terdaftar'] = false;
             }
             return SendResponse::success($data, 200);
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
         }
     }
