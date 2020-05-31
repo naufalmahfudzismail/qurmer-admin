@@ -56,8 +56,9 @@ class ChallengeController extends Controller
             $progress = Progress::create($data);
             $history = History::create($data_history);
 
-            $data['progress'] = $progress;
-            $data['history'] = $history;
+            $data['progress'] = $progress->first()->id;
+            $data['history'] = $history->first()->id;
+
             $data['challenge_score'] = $this->getTotalScoreChallenge($request['challenge_id']);
 
             return SendResponse::success($data, 200);
@@ -97,7 +98,9 @@ class ChallengeController extends Controller
 
         $challenge = Challenge::find($challenge_id)->first();
         $level_score = Level::find($challenge->level_id)->first()->bonus_score;
+
         $challenge_score = $challenge->score;
+        dd($challenge_score);
         $final_score = $challenge_score + $level_score;
 
         return $final_score;
