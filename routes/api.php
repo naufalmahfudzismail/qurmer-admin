@@ -28,7 +28,8 @@ Route::post('login-google','API\AuthController@loginProvider');
 Route::post('register','API\AuthController@register');
 Route::get('username/{username}', 'API\AuthController@checkUsername');
 
-Route::get('download-audio/{file}', 'API\MediaController@downloadAudio');
+Route::get('download-audio/{file}', 'API\MediaController@downloadAudio')->middleware('throttle:60,1');
+
 Route::get('download-video/{file}', 'API\MediaController@downloadVideo');
 
 Route::get('challenge', 'API\ChallengeController@getChallenge' );
@@ -42,6 +43,8 @@ Route::group(['middleware' => ['auth:api']],  function () {
     Route::post('challenge-join', 'API\ChallengeController@joinChallenge');
     Route::post('challenge-done', 'API\ChallengeController@afterChallenge');
     Route::post('audio-history', 'API\PlayListController@recapHistory');
+
+    
 
 });
 

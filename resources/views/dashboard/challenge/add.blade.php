@@ -55,7 +55,7 @@
                             <div class="col-md-6">
                                 <select id="level_id" name="level_id" style="padding:6px;width:100%">
                                     @foreach($levels as $level)
-                                    <option value="{{$level['id']}}">Level {{$level['id']}} : {{$level['name']}}</option>
+                                    <option value="{{$level['id']}}">Level {{$level['level']}} : {{$level['name']}}</option>
                                     @endforeach
                                 </select>
                             </div>

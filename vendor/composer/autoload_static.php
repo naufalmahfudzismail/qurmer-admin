@@ -39,6 +39,10 @@ class ComposerStaticInit38f1f36dac56fd08316db016c007a941
     );
 
     public static $prefixLengthsPsr4 = array (
+        'w' => 
+        array (
+            'wapmorgan\\Mp3Info\\' => 18,
+        ),
         'p' => 
         array (
             'phpseclib\\' => 10,
@@ -185,6 +189,10 @@ class ComposerStaticInit38f1f36dac56fd08316db016c007a941
     );
 
     public static $prefixDirsPsr4 = array (
+        'wapmorgan\\Mp3Info\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/wapmorgan/mp3info/src',
+        ),
         'phpseclib\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
@@ -517,10 +525,13 @@ class ComposerStaticInit38f1f36dac56fd08316db016c007a941
 
     public static $classMap = array (
         'App\\AudioPlaylist' => __DIR__ . '/../..' . '/app/Model/AudioPlaylist.php',
+        'App\\Bundle' => __DIR__ . '/../..' . '/app/Bundle.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\API\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/AuthController.php',
+        'App\\Http\\Controllers\\API\\ChallengeController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/ChallengeController.php',
         'App\\Http\\Controllers\\API\\DataController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/DataController.php',
+        'App\\Http\\Controllers\\API\\HistoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/HistoryController.php',
         'App\\Http\\Controllers\\API\\MediaController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/MediaController.php',
         'App\\Http\\Controllers\\API\\PlayListController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/PlayListController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -538,6 +549,7 @@ class ComposerStaticInit38f1f36dac56fd08316db016c007a941
         'App\\Http\\Controllers\\BackOffice\\TaskController' => __DIR__ . '/../..' . '/app/Http/Controllers/BackOffice/TaskController.php',
         'App\\Http\\Controllers\\BackOffice\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/BackOffice/UserController.php',
         'App\\Http\\Controllers\\BackOffice\\VideoController' => __DIR__ . '/../..' . '/app/Http/Controllers/BackOffice/VideoController.php',
+        'App\\Http\\Controllers\\BundleController' => __DIR__ . '/../..' . '/app/Http/Controllers/BundleController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
@@ -548,12 +560,12 @@ class ComposerStaticInit38f1f36dac56fd08316db016c007a941
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
-        'App\\Level' => __DIR__ . '/../..' . '/app/Level.php',
         'App\\Model\\Audio' => __DIR__ . '/../..' . '/app/Model/Audio.php',
         'App\\Model\\Ayat' => __DIR__ . '/../..' . '/app/Model/Ayat.php',
         'App\\Model\\Badge' => __DIR__ . '/../..' . '/app/Model/Badge.php',
         'App\\Model\\Challenge' => __DIR__ . '/../..' . '/app/Model/Challenge.php',
         'App\\Model\\History' => __DIR__ . '/../..' . '/app/Model/History.php',
+        'App\\Model\\Level' => __DIR__ . '/../..' . '/app/Model/Level.php',
         'App\\Model\\Playlist' => __DIR__ . '/../..' . '/app/Model/Playlist.php',
         'App\\Model\\Progress' => __DIR__ . '/../..' . '/app/Model/Progress.php',
         'App\\Model\\Quote' => __DIR__ . '/../..' . '/app/Model/Quote.php',
@@ -616,6 +628,7 @@ class ComposerStaticInit38f1f36dac56fd08316db016c007a941
         'Carbon\\Traits\\Units' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Units.php',
         'Carbon\\Traits\\Week' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Week.php',
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
+        'ChallengeTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ChallengeTableSeeder.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
         'Cron\\DayOfMonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/DayOfMonthField.php',
@@ -2754,6 +2767,7 @@ class ComposerStaticInit38f1f36dac56fd08316db016c007a941
         'League\\OAuth2\\Server\\ResponseTypes\\BearerTokenResponse' => __DIR__ . '/..' . '/league/oauth2-server/src/ResponseTypes/BearerTokenResponse.php',
         'League\\OAuth2\\Server\\ResponseTypes\\RedirectResponse' => __DIR__ . '/..' . '/league/oauth2-server/src/ResponseTypes/RedirectResponse.php',
         'League\\OAuth2\\Server\\ResponseTypes\\ResponseTypeInterface' => __DIR__ . '/..' . '/league/oauth2-server/src/ResponseTypes/ResponseTypeInterface.php',
+        'LevelTableSeeder' => __DIR__ . '/../..' . '/database/seeds/LevelTableSeeder.php',
         'Mockery' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV5.php',
         'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV6' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV6.php',
@@ -4974,6 +4988,7 @@ class ComposerStaticInit38f1f36dac56fd08316db016c007a941
         'phpseclib\\Net\\SSH2' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Net/SSH2.php',
         'phpseclib\\System\\SSH\\Agent' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/System/SSH/Agent.php',
         'phpseclib\\System\\SSH\\Agent\\Identity' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/System/SSH/Agent/Identity.php',
+        'wapmorgan\\Mp3Info\\Mp3Info' => __DIR__ . '/..' . '/wapmorgan/mp3info/src/Mp3Info.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
