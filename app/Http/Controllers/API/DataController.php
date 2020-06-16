@@ -50,7 +50,7 @@ class DataController extends Controller
 
     public function getAllAudioSurah(){
         try{
-            $data['audio'] = Audio::with('surah')->get();
+            $data['audio'] = Audio::orderBy("surah_id")->with('surah')->get();
             $data['ayat'] = Ayat::all();
             return SendResponse::success($data, 200);
 
