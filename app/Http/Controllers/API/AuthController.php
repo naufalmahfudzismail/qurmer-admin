@@ -165,7 +165,7 @@ class AuthController extends Controller
                 $us['progress'] = Progress::where('user_id', $us->user->id)->get();
 
                 if($us->user->id == Auth::user()->id){
-                    $data['current_user'] = $$us['user'];
+                    $data['current_user'] = $us['user'];
                     $data['current_user']['rank'] = $key +1;
                 }
             }
