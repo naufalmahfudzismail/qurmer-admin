@@ -43,6 +43,9 @@ Route::group(['middleware' => ['auth:api']],  function () {
     Route::post('challenge-join', 'API\ChallengeController@joinChallenge');
     Route::post('challenge-done', 'API\ChallengeController@afterChallenge');
     Route::post('audio-history', 'API\PlayListController@recapHistory');
+    
+    Route::get('user', 'API\AuthController@getUserData');
+    Route::get('rank', 'API\AuthController@getRank');
 
     
 

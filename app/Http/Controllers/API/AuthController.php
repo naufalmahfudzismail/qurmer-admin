@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Model\Progress;
 use App\Model\Score;
 use App\Model\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use App\Services\SendResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -38,7 +40,6 @@ class AuthController extends Controller
     public function loginProvider(Request $request, $provider)
     {
         try {
-
             $data = [];
             $user = User::where('email', $request->email)->first();
             if (!$user) {
@@ -55,6 +56,9 @@ class AuthController extends Controller
             return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
         }
     }
+
+
+
 
 
     public function register(Request $request)
@@ -121,6 +125,48 @@ class AuthController extends Controller
             }
             return SendResponse::success($data, 200);
         } catch (\Exception $e) {
+            return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
+        }
+    }
+
+
+    public function getUserData(){
+
+        try{
+            $data = [];
+            $user = User::find(Auth::user()->id);
+            $score = Score::where('user_id', Auth::user()->id);
+            $progress = Progress::where('user_id', Auth::user()->id);
+
+            $data['user'] = $user;
+            $data['score'] = $score;
+            $data['progress'] = $progress;
+
+            return SendResponse::success($data, 200);
+
+        }catch(\Exception $e){
+
+            return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
+
+        }
+    }
+
+    public function getRank(){
+        try{
+
+            $data = Score::orderBy('total_score', 'DESC')->with('user');
+            foreach($data as $key => $us){
+                $us['rank'] = Progress::where('user_id', $us['user']->id);
+
+                if($us['user']->id == Auth::user()->id){
+                    $data['current_user'] = $$us['user'];
+                    $data['current_user']['rank'] = $key +1;
+                }
+            }
+
+            return SendResponse::success($data, 200);
+
+        }catch(\Exception $e){
             return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
         }
     }
