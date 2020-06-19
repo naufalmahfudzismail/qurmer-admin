@@ -160,10 +160,10 @@ class AuthController extends Controller
     public function getRank(){
         try{
 
-            $data = Score::orderBy('total_score', 'DESC')->with('user')->get();
-            foreach($data as $key => $us){
+            $data = [];
+            $data['rank'] = Score::orderBy('total_score', 'DESC')->with('user')->get();
+            foreach($data['rank'] as $key => $us){
                 $us['progress'] = Progress::where('user_id', $us->user->id)->get();
-
                 if($us->user->id == Auth::user()->id){
                     $data['current_user'] = $us['user'];
                     $data['current_user']['rank'] = $key +1;
