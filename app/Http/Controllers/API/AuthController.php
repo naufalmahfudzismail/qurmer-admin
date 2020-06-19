@@ -138,8 +138,8 @@ class AuthController extends Controller
             $score = Score::where('user_id', $user->id)->first();
             $progress = Progress::where('user_id', $user->id)->get();
 
-            $data = Score::orderBy('total_score', 'DESC')->with('user')->get();
-            foreach($data as $key => $us){
+            $rank = Score::orderBy('total_score', 'DESC')->with('user')->get();
+            foreach($rank as $key => $us){
                 if($us->user->id == $user->id){
                     $user['rank'] = $key+1;
                 }
