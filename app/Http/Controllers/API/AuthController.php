@@ -135,7 +135,7 @@ class AuthController extends Controller
         try{
             $data = [];
             $user = User::find(Auth::user()->id);
-            $score = Score::where('user_id', $user->id)->get();
+            $score = Score::where('user_id', $user->id)->first();
             $progress = Progress::where('user_id', $user->id)->get();
 
             $data['user'] = $user;
@@ -156,7 +156,7 @@ class AuthController extends Controller
 
             $data = Score::orderBy('total_score', 'DESC')->with('user')->get();
             foreach($data as $key => $us){
-                $us['rank'] = Progress::where('user_id', $us['user']->id);
+                $us['rank'] = Progress::where('user_id', $us['user']->id)->get();
 
                 if($us['user']->id == Auth::user()->id){
                     $data['current_user'] = $$us['user'];
