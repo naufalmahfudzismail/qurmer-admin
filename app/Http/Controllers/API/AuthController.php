@@ -162,7 +162,7 @@ class AuthController extends Controller
 
             $data = Score::orderBy('total_score', 'DESC')->with('user')->get();
             foreach($data as $key => $us){
-                $us['progress'] = Progress::where('user_id', $us['user']->id)->get();
+                $us['progress'] = Progress::where('user_id', $us->user->id)->get();
 
                 if($us->user->id == Auth::user()->id){
                     $data['current_user'] = $$us['user'];
