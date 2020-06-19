@@ -138,6 +138,12 @@ class AuthController extends Controller
             $score = Score::where('user_id', $user->id)->first();
             $progress = Progress::where('user_id', $user->id)->get();
 
+            $data = Score::orderBy('total_score', 'DESC')->with('user')->get();
+            foreach($data as $key => $us){
+                if($us->user->id == $user->id){
+                    $user['rank'] = $key+1;
+                }
+            }
             $data['user'] = $user;
             $data['score'] = $score;
             $data['progress'] = $progress;
@@ -156,14 +162,13 @@ class AuthController extends Controller
 
             $data = Score::orderBy('total_score', 'DESC')->with('user')->get();
             foreach($data as $key => $us){
-                $us['rank'] = Progress::where('user_id', $us['user']->id)->get();
+                $us['progress'] = Progress::where('user_id', $us['user']->id)->get();
 
-                if($us['user']->id == Auth::user()->id){
+                if($us->user->id == Auth::user()->id){
                     $data['current_user'] = $$us['user'];
                     $data['current_user']['rank'] = $key +1;
                 }
             }
-
             return SendResponse::success($data, 200);
 
         }catch(\Exception $e){
