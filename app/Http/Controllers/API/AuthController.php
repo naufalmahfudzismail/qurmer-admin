@@ -135,8 +135,8 @@ class AuthController extends Controller
         try{
             $data = [];
             $user = User::find(Auth::user()->id);
-            $score = Score::where('user_id', $user->id);
-            $progress = Progress::where('user_id', $user->id);
+            $score = Score::where('user_id', $user->id)->get();
+            $progress = Progress::where('user_id', $user->id)->get();
 
             $data['user'] = $user;
             $data['score'] = $score;
