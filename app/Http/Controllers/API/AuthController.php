@@ -167,6 +167,7 @@ class AuthController extends Controller
                 if($us->user->id == Auth::user()->id){
                     $data['current_user'] = $us['user'];
                     $data['current_user']['rank'] = $key +1;
+                    $data['current_user']['progress'] =  Progress::where('user_id', $us->user->id)->with('challenge')->get();
                 }
             }
             return SendResponse::success($data, 200);
