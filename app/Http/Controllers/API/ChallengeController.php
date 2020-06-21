@@ -20,12 +20,13 @@ class ChallengeController extends Controller
     {
         try {
             $data = [];
-            $data["level1"]= Challenge::where('level_id', 1)::where('daily', false)->with('surah')->get();
-            $data["level2"]= Challenge::where('level_id', 2)::where('daily', false)->with('surah')->get();
-            $data["level3"]= Challenge::where('level_id', 3)::where('daily', false)->with('surah')->get();
+            $data["level1"]= Challenge::where('level_id', 1)->where('daily', false)->with('surah')->get();
+            $data["level2"]= Challenge::where('level_id', 2)->where('daily', false)->with('surah')->get();
+            $data["level3"]= Challenge::where('level_id', 3)->where('daily', false)->with('surah')->get();
 
-            
+        
             return SendResponse::success($data, 200);
+
         } catch (\Exception $e) {
             return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
         }
