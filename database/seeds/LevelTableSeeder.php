@@ -20,7 +20,7 @@ class LevelTableSeeder extends Seeder
         ['Tebak Lanjutan Pertengahan Ayat', 2, 3000],
         ['Tebak Urutan Surat Selanjutnya', 2, 3500],
         ['Tebak Nama Surat dari Suara', 3, 4000],
-        ['Tebak Ayat Mutasabihat', 4000]
+        ['Tebak Ayat Mutasabihat',3, 4000]
     ];
 
         for ($i = 0; $i < count($level); $i++) {
