@@ -31,6 +31,8 @@ class ChallengeController extends Controller
                 ->where('level_id', 7)->orWhere('level_id', 8)
                 ->get();
 
+            $data["progress_challenge"] = Progress::where('user_id', Auth::user()->id)->with('challenge')->where('daily', false);
+
             return SendResponse::success($data, 200);
         } catch (\Exception $e) {
             return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
