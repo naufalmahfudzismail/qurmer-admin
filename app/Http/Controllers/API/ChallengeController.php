@@ -20,9 +20,9 @@ class ChallengeController extends Controller
     {
         try {
             $data = [];
-            $data["level1"]= Challenge::where('daily', false)->with('level', 'surah')->where('level', 1)->get();
-            $data["level2"]= Challenge::where('daily', false)->with('level', 'surah')->where('level', 2)->get();
-            $data["level3"]= Challenge::where('daily', false)->with('level', 'surah')->where('level', 3)->get();
+            $data["level1"]= Challenge::where('daily', false)->with('level', 'surah')->where('levels.level', 1)->get();
+            $data["level2"]= Challenge::where('daily', false)->with('level', 'surah')->where('levels.level', 2)->get();
+            $data["level3"]= Challenge::where('daily', false)->with('level', 'surah')->where('levels.level', 3)->get();
         
             return SendResponse::success($data, 200);
 
