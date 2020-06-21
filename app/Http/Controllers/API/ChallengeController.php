@@ -20,12 +20,18 @@ class ChallengeController extends Controller
     {
         try {
             $data = [];
-            $data["level1"]= Challenge::where('daily', false)->with('level', 'surah')->where('level_id', 1)->get();
-            $data["level2"]= Challenge::where('daily', false)->with('level', 'surah')->where('level_id', 2)->get();
-            $data["level3"]= Challenge::where('daily', false)->with('level', 'surah')->where('level_id', 3)->get();
-        
-            return SendResponse::success($data, 200);
+            $data["level1"] = Challenge::where('daily', false)->with('level', 'surah')
+                ->where('level_id', 1)->orWhere('level_id', 2)
+                ->get();
+            $data["level2"] = Challenge::where('daily', false)->with('level', 'surah')
+                ->where('level_id', 3)->orwWere('level_id', 4)
+                ->orWhere('level_id', 5)->orWhere('level_id', 6)
+                ->get();
+            $data["level3"] = Challenge::where('daily', false)->with('level', 'surah')
+                ->where('level_id', 7)->orWhere('level_id', 8)
+                ->get();
 
+            return SendResponse::success($data, 200);
         } catch (\Exception $e) {
             return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
         }
@@ -99,7 +105,6 @@ class ChallengeController extends Controller
             return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
         }
     }
-
 
     function getTotalScoreChallenge($challenge_id)
     {
