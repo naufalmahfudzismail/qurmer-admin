@@ -1,6 +1,6 @@
 <?php
 
-use App\Level;
+use App\Model\Level;
 use Illuminate\Database\Seeder;
 
 class LevelTableSeeder extends Seeder
