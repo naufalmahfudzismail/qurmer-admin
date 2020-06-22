@@ -31,14 +31,39 @@ class ChallengeController extends Controller
                 ->where('level_id', 7)->orWhere('level_id', 8)
                 ->get();
 
-            $data["progress_challenge"] = Progress::where('user_id', Auth::user()->id)->with('challenge')->where('daily', false);
+            $data["progress_challenge"] = $this->progressLevel(Progress::where('user_id', Auth::user()->id)
+                        ->with('challenge')->where('daily', false)->orderBy('challenge_id')->get());
 
             return SendResponse::success($data, 200);
+
         } catch (\Exception $e) {
             return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
         }
     }
 
+    public function progressLevel($data)
+    {
+
+        $level_1 = 0;
+        $level_2 = 0;
+        $level_3 = 0;
+
+        foreach($data as $dt){
+            $level = $dt->challenge->level;
+            if($level == 1) $level_1++;
+            if($level == 2) $level_2++;
+            if($level == 3) $level_3++;
+        }
+
+        $progress = [];
+
+        $progress['level_1'] = $level_1;
+        $progress['level_2'] = $level_2;
+        $progress['level_3'] = $level_3;
+
+        return $progress;
+
+    }
 
     public function getDailyChallenge()
     {
@@ -107,6 +132,9 @@ class ChallengeController extends Controller
             return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
         }
     }
+
+
+    
 
     function getTotalScoreChallenge($challenge_id)
     {
