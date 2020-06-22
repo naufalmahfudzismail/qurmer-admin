@@ -51,7 +51,7 @@ class ChallengeController extends Controller
         $level_3 = 0;
 
         foreach($data as $dt){
-            $level = $dt->challenge->level;
+            $level = Level::find($dt->challenge->level_id)->level;
             if($level == 1) $level_1++;
             if($level == 2) $level_2++;
             if($level == 3) $level_3++;
