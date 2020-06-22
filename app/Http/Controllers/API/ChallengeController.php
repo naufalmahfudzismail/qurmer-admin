@@ -32,9 +32,9 @@ class ChallengeController extends Controller
                 ->get();
 
             $data["progress_challenge"] = $this->progressLevel(Progress::where('user_id', Auth::user()->id)
-                        ->whereHas('challenge', function ($query) {
-                            return $query->where('daily', false);
-                        })->get());
+                        ->with(['challenge' => function ($query) {
+                            $query->where('daily', false);
+                        }])->get());
 
             return SendResponse::success($data, 200);
 
