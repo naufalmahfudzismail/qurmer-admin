@@ -51,22 +51,22 @@ class ChallengeController extends Controller
 
         $progress = array();
 
-        foreach ($data as $dt) {
+        foreach ($data as $key => $dt) {
             $level = Level::find($dt->challenge->level_id)->level;
             $surah = Surah::find($dt->challenge->surah_id);
-            $progress[]['surah']  = $surah;
-            $progress[]['level'] = $level;
+            $progress[$key]['surah']  = $surah;
+            $progress[$key]['level'] = $level;
             if ($level == 1) {
                 $level_1++;
-                $progress[]['order_level'] = $level_1;
+                $progress[$key]['order_level'] = $level_1;
             }
             if ($level == 2) {
                 $level_2++;
-                $progress[]['order_level'] = $level_2;
+                $progress[$key]['order_level'] = $level_2;
             }
             if ($level == 3) {
                 $level_3++;
-                $progress[]['order_level'] = $level_3;
+                $progress[$key]['order_level'] = $level_3;
             }
         }
 
