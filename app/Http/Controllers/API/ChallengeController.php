@@ -32,12 +32,11 @@ class ChallengeController extends Controller
                 ->get();
 
             $data["progress_challenge"] = $this->progressLevel(Progress::where('user_id', Auth::user()->id)
-                        ->with(['challenge' => function ($query) {
-                            $query->where('daily', false);
-                        }])->get());
+                ->with(['challenge' => function ($query) {
+                    $query->where('daily', false);
+                }])->get());
 
             return SendResponse::success($data, 200);
-
         } catch (\Exception $e) {
             return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
         }
@@ -50,21 +49,27 @@ class ChallengeController extends Controller
         $level_2 = 0;
         $level_3 = 0;
 
-        foreach($data as $dt){
-            $level = Level::find($dt->challenge->level_id)->level;
-            if($level == 1) $level_1++;
-            if($level == 2) $level_2++;
-            if($level == 3) $level_3++;
-        }
-
         $progress = [];
 
-        $progress['level_1'] = $level_1;
-        $progress['level_2'] = $level_2;
-        $progress['level_3'] = $level_3;
-
+        foreach ($data as $dt) {
+            $level = Level::find($dt->challenge->level_id)->level;
+            $surah = Surah::find($dt->challenge->surah_id);
+            $progress['surah']  = $surah;
+            $progress['level'] = $level;
+            if ($level == 1) {
+                $level_1++;
+                $progress['order_level'] = $level_1;
+            }
+            if ($level == 2) {
+                $level_2++;
+                $progress['order_level'] = $level_2;
+            }
+            if ($level == 3) {
+                $level_3++;
+                $progress['order_level'] = $level_3;
+            }
+        }
         return $progress;
-
     }
 
     public function getDailyChallenge()
@@ -136,7 +141,7 @@ class ChallengeController extends Controller
     }
 
 
-    
+
 
     function getTotalScoreChallenge($challenge_id)
     {
