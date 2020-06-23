@@ -20,8 +20,8 @@ class ChallengeController extends Controller
     {
         try {
             $data = [];
-            $data["challenge_static"] = Challenge::where('daily', false)->with('level', 'surah')->get();
-            $data["progress_challenge"] = $this->progressLevel(Progress::where('user_id', Auth::user()->id)
+            $data["challenge"] = Challenge::where('daily', false)->with('level', 'surah')->get();
+            $data["progress"] = $this->progressLevel(Progress::where('user_id', Auth::user()->id)
                 ->with(['challenge' => function ($query) {
                     $query->where('daily', false);
                 }])->get());
