@@ -10,7 +10,6 @@ class ChallengeTableSeeder extends Seeder{
 
             //surat pendek
             if ($i < 13) {
-
                 //misi
                 Challenge::create([
                     'surah_id' => $i + 1,
@@ -109,6 +108,7 @@ class ChallengeTableSeeder extends Seeder{
                 ]);
 
             } 
+            
             //surat panjang
             else {
             //misi

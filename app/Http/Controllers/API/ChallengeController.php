@@ -21,7 +21,7 @@ class ChallengeController extends Controller
         try {
             $data = [];
             $data["challenge"] = Challenge::where('daily', false)->with('level', 'surah')->get();
-            $data["progress"] = $this->progressLevel(Progress::where('user_id', Auth::user()->id)
+            $data["progress"] = $this->progressLevel(Progress::where('user_id', Auth::user()->id)->where('is_done', true)
                 ->with(['challenge' => function ($query) {
                     $query->where('daily', false);
                 }])->get());
