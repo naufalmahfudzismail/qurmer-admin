@@ -21,8 +21,8 @@ class ChallengeController extends Controller
         try {
             $data = [];
 
-            $except = Progress::select('challenge_id')->where('user_id', Auth::user())->get();
-            
+            $except = Progress::select('challenge_id')->where('user_id', Auth::user()->id)->get();
+
             $data["challenge"] = Challenge::where('daily', false)->whereNotIn('id', $except)->with('level', 'surah')->get();
             $data["progress"] = $this->progressLevel(Progress::where('user_id', Auth::user()->id)->where('is_done', true)
                 ->with(['challenge' => function ($query) {
@@ -121,7 +121,9 @@ class ChallengeController extends Controller
             } else {
                 $progress->is_done = true;
                 $score->total_score = $score->total_score + $final_score;
+
                 $result = $progress->save();
+
                 $result_score = $score->save();
                 if ($result and $result_score) {
                     $data['progress_status'] = $progress->is_done;
