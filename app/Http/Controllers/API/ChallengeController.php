@@ -20,7 +20,10 @@ class ChallengeController extends Controller
     {
         try {
             $data = [];
-            $data["challenge"] = Challenge::where('daily', false)->with('level', 'surah')->get();
+
+            $except = Progress::select('challenge_id')->where('user_id', Auth::user())->get();
+            
+            $data["challenge"] = Challenge::where('daily', false)->whereNotIn('id', $except)->with('level', 'surah')->get();
             $data["progress"] = $this->progressLevel(Progress::where('user_id', Auth::user()->id)->where('is_done', true)
                 ->with(['challenge' => function ($query) {
                     $query->where('daily', false);
@@ -86,11 +89,12 @@ class ChallengeController extends Controller
             $data['user_id'] = Auth::user()->id;
             $data['is_done'] = false;
 
-            $data_history['activity_id'] = $request['challenge_id'];
-            $data_history['activity_name'] = 'challenge';
+            $progress = Progress::create($data);
+
+            $data_history['activity_id'] = $progress->id;;
+            $data_history['activity_name'] = 'progress';
             $data_history['user_id'] = Auth::user()->id;
 
-            $progress = Progress::create($data);
             $history = History::create($data_history);
 
             $data['progress_id'] = $progress->id;

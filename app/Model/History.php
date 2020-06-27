@@ -18,9 +18,9 @@ class History extends Model
         return $this->belongsTo('App\Model\User', $this->user_id);
     }
 
-    public function challenge(){
-        return $this->belongsTo('App\Model\Challenge', $this->activity_id)
-                    ->where($this->activity_name, 'challenge');
+    public function progress(){
+        return $this->belongsTo('App\Model\Progress', $this->activity_id)
+                    ->where($this->activity_name, 'progress');
     }
 
     public function audio(){
