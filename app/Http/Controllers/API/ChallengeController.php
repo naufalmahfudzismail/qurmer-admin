@@ -21,7 +21,8 @@ class ChallengeController extends Controller
         try {
             $data = [];
 
-            $except = Progress::select('challenge_id')->where('user_id', Auth::user()->id)->get();
+            // mengeluarkan challenge yang sudah di lakukan
+            $except = Progress::select('challenge_id')->where('user_id', Auth::user()->id)->where('is_done', true)->get();
 
             $data["challenge"] = Challenge::where('daily', false)->whereNotIn('id', $except)->with('level', 'surah')->get();
             $data["progress"] = $this->progressLevel(Progress::where('user_id', Auth::user()->id)->where('is_done', true)
