@@ -92,7 +92,7 @@ class ChallengeController extends Controller
 
             $progress = Progress::create($data);
 
-            $data_history['activity_id'] = $progress->id;;
+            $data_history['activity_id'] = $progress->id;
             $data_history['activity_name'] = 'progress';
             $data_history['user_id'] = Auth::user()->id;
 
