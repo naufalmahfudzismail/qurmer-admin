@@ -16,8 +16,11 @@ class HistoryController extends Controller
         try {
             $data = History::where('activity_name', 'progress')->where('user_id', Auth::user()->id)->get();
             foreach($data as $dt){
+                dd($dt->activity_id);
                 $dt['progress'] = Progress::find($dt->activity_id)->with(
-                    'challenge'
+                    'challenge',
+                    'challenge.level',
+                    'challenge.surah'
                 );
             }
             return SendResponse::success($data, 200);
