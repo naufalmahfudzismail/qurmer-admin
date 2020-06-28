@@ -13,8 +13,9 @@ class HistoryController extends Controller
     public function getAllHistory()
     {
         try {
-            $data = History::with('user')->where('user_id', Auth::user()->id)
+            $data = History::where('activity_name', 'progress')->where('user_id', Auth::user()->id)
                 ->with(
+                    'user',
                     'progress',
                     'progress.challenge',
                     'progress.challenge.surah',
