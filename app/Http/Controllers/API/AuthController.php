@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Level;
 use App\Model\Progress;
 use App\Model\Score;
+use App\Model\Surah;
 use App\Model\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
