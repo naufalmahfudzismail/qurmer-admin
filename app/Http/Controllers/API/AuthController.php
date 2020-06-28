@@ -169,8 +169,12 @@ class AuthController extends Controller
 
             $data = [];
             $data['rank'] = Score::orderBy('total_score', 'DESC')->with('user')->get();
+
             foreach($data['rank'] as $key => $us){
-                $us['progress'] = Progress::where('user_id', $us->user->id)->with('challenge')->get();
+                $us['progress'] = $this->progressLevel(Progress::where('user_id', $us->user->id)->where('is_done', true)
+                ->with(['challenge' => function ($query) {
+                    $query->where('daily', false);
+                }])->get());
                 if($us->user->id == Auth::user()->id){
                     $data['current_user'] = $us['user'];
                     $data['current_user']['rank'] = $key +1;
