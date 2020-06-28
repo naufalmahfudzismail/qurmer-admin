@@ -20,7 +20,7 @@ class History extends Model
 
     public function progress(){
         return $this->belongsTo('App\Model\Progress', $this->activity_id)
-                    ->where($this->activity_name, 'progress');
+                    ->where('activity_name', 'progress');
     }
 
     public function audio(){
