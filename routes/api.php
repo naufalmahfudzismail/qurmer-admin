@@ -49,4 +49,6 @@ Route::group(['middleware' => ['auth:api']],  function () {
 
     Route::get('challenge', 'API\ChallengeController@getChallenge');
     Route::get('challenge-daily', 'API\ChallengeController@getDailyChallenge');
+
+    Route::get('history', 'API\HistoryController@getAllHistory');
 });
