@@ -17,12 +17,12 @@ class History extends Model
     {
         return $this->belongsTo('App\Model\User', $this->user_id);
     }
-
+    
     public function progress(){
         return $this->belongsTo('App\Model\Progress', $this->activity_id);
     }
 
-    public function audio(){
+    /* public function audio(){
 
         return $this->belongsTo('App\Model\Audio', $this->activity_id)
                  ->where($this->activity_name, 'audio');
@@ -32,5 +32,5 @@ class History extends Model
 
         return $this->belongsTo('App\Model\Task', $this->activity_id)
         ->where($this->activity_name, 'task');
-    }
+    } */
 }
