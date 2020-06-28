@@ -10,7 +10,7 @@ use Auth;
 class HistoryController extends Controller
 {
 
-    public function getAllHistory(Request $request)
+    public function getAllHistory()
     {
         try {
             $data = History::with('user')->where('user_id', Auth::user()->id)->with('progress', 'progress.challenge', 'progress.challenge.surah'. 'progress.challenge.level')->get();
