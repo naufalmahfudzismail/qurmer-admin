@@ -136,8 +136,13 @@ class AuthController extends Controller
             $data = [];
             $user = User::find(Auth::user()->id);
             $score = Score::where('user_id', $user->id)->first();
-            $progress = Progress::where('user_id', $user->id)->with('challenge')->get();
 
+            $progress_static =  $data["progress"] = $this->progressLevel(Progress::where('user_id', Auth::user()->id)->where('is_done', true)
+            ->with(['challenge' => function ($query) {
+                $query->where('daily', false);
+            }])->get());;
+
+        
             $rank = Score::orderBy('total_score', 'DESC')->with('user')->get();
             foreach($rank as $key => $us){
                 if($us->user->id == $user->id){
@@ -146,7 +151,7 @@ class AuthController extends Controller
             }
             $data['user'] = $user;
             $data['score'] = $score;
-            $data['progress'] = $progress;
+            $data['progress'] = $progress_static;
 
             return SendResponse::success($data, 200);
 
@@ -177,4 +182,38 @@ class AuthController extends Controller
             return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
         }
     }
+
+
+    public function progressLevel($data)
+    {
+
+        $level_1 = 0;
+        $level_2 = 0;
+        $level_3 = 0;
+
+        $progress = array();
+
+        foreach ($data as $key => $dt) {
+            $level = Level::find($dt->challenge->level_id)->level;
+            $surah = Surah::find($dt->challenge->surah_id);
+            $progress[$key]['surah']  = $surah;
+            $progress[$key]['level'] = $level;
+            if ($level == 1) {
+                $level_1++;
+                $progress[$key]['order_level'] = $level_1;
+            }
+            if ($level == 2) {
+                $level_2++;
+                $progress[$key]['order_level'] = $level_2;
+            }
+            if ($level == 3) {
+                $level_3++;
+                $progress[$key]['order_level'] = $level_3;
+            }
+        }
+
+
+        return $progress;
+    }
+
 }

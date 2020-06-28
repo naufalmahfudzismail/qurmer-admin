@@ -13,7 +13,7 @@ class HistoryController extends Controller
     public function getAllHistory(Request $request)
     {
         try {
-            $data = History::with('user')->where('user_id', Auth::user()->id)->with('challenge')->get();
+            $data = History::with('user')->where('user_id', Auth::user()->id)->with('progress')->get();
             return SendResponse::success($data, 200);
         } catch (\Exception $e) {
             return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
