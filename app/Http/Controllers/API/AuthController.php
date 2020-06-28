@@ -175,10 +175,14 @@ class AuthController extends Controller
                 ->with(['challenge' => function ($query) {
                     $query->where('daily', false);
                 }])->get());
+
                 if($us->user->id == Auth::user()->id){
                     $data['current_user'] = $us['user'];
                     $data['current_user']['rank'] = $key +1;
-                    $data['current_user']['progress'] =  Progress::where('user_id', $us->user->id)->with('challenge')->get();
+                    $data['current_user']['progress'] = $this->progressLevel(Progress::where('user_id', $us->user->id)->where('is_done', true)
+                    ->with(['challenge' => function ($query) {
+                        $query->where('daily', false);
+                    }])->get());
                     $data['current_user']['score'] = Score::where('user_id', $us->user->id )->first();
                 }
             }
