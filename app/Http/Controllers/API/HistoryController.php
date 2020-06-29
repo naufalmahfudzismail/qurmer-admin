@@ -19,7 +19,7 @@ class HistoryController extends Controller
             foreach($data as $dt){
                 $dt['progress'] = Progress::find($dt->activity_id)->with(
                     'challenge'
-                );
+                )->get();
             }
             return SendResponse::success($data, 200);
         } catch (\Exception $e) {
