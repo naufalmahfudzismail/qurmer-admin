@@ -14,13 +14,13 @@ class HistoryController extends Controller
     public function getAllHistory()
     {
         try {
-            $data = History::where('activity_name', 'progress')->where('user_id', Auth::user()->id)
-                ->with(
-                    'progress',
-                    'progress.challenge',
-                    'progress.challenge.surah',
-                    'progress.challenge.level'
-                )->get();
+            $data = History::where('activity_name', 'progress')->where('user_id', Auth::user()->id)->get();
+            foreach($data as $dt){
+                $dt['progress'] = Progress::find($dt->activity_id)->with(
+                    'challenge'
+                );
+                dd($dt['progress']);
+            }
             return SendResponse::success($data, 200);
         } catch (\Exception $e) {
             return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
