@@ -38,19 +38,20 @@ class ChallengeController extends Controller
 
     public function getDailyChallenge()
     {
-        try {
+        // try {
             $data = [];
             $except = Progress::select('challenge_id')->where('user_id', Auth::user()->id)->where('is_done', true)->get();
             $data['challenge']  = Challenge::where('daily', true)->whereNotIn('id', $except)->with('level', 'surah')->get();
+            
             $data["progress"] = $this->progressLevel(Progress::where('user_id', Auth::user()->id)->where('is_done', true)
             ->with(['challenge' => function ($query) {
                 $query->where('daily', true);
             }])->get());
 
             return SendResponse::success($data, 200);
-        } catch (\Exception $e) {
-            return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
-        }
+        // } catch (\Exception $e) {
+        //     return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
+        // }
     }
 
     public function progressLevel($data)
