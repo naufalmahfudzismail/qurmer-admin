@@ -56,6 +56,7 @@ class ChallengeController extends Controller
 
     public function progressLevel($data)
     {
+        dd($data);
 
         $level_1 = 0;
         $level_2 = 0;
