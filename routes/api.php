@@ -36,7 +36,7 @@ Route::get('challenge', 'API\ChallengeController@getChallenge');
 Route::get('challenge-daily', 'API\ChallengeController@getDailyChallenge');
 
 
-Route::get('quote', 'API\DataController@getQuote');
+
 
 Route::group(['middleware' => ['auth:api']],  function () {
 
@@ -51,4 +51,6 @@ Route::group(['middleware' => ['auth:api']],  function () {
     Route::get('challenge-daily', 'API\ChallengeController@getDailyChallenge');
 
     Route::get('history', 'API\HistoryController@getAllHistory');
+
+    Route::get('quote', 'API\DataController@getQuote');
 });

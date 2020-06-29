@@ -9,6 +9,8 @@ use App\Model\Badge;
 use App\Model\Quote;
 use App\Services\SendResponse;
 use App\Model\Surah;
+use App\Model\User;
+use Illuminate\Support\Facades\Auth;
 use Faker\Provider\Base;
 
 class DataController extends Controller
@@ -41,6 +43,8 @@ class DataController extends Controller
             foreach($data as $dt){
                 $dt['image_url'] = $url.$dt->image;
             }
+
+            $data["user"] = User::find(Auth::user()->id);
             return SendResponse::success($data, 200);
 
         }catch(\Exception $e){
