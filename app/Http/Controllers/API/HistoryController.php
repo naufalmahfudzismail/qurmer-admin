@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Model\History;
+use App\Model\Progress;
 use App\Services\SendResponse;
 use Illuminate\Http\Request;
 use Auth;
