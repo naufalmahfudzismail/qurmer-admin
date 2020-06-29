@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Model\History;
 use App\Services\SendResponse;
+use Illuminate\Http\Request;
 use Auth;
 
 class HistoryController extends Controller

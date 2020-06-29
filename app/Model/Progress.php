@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Progress extends Model
 {
+
+    protected $primaryKey = 'id';
+
     protected $guarded = [
         'id',
 	    'created_at',
