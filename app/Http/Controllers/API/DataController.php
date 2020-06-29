@@ -39,13 +39,13 @@ class DataController extends Controller
     public function getQuote(){
         try{
             $data = [];
-            $data["quote"] = Quote::all();
+            $data['quote'] = Quote::all();
             $url = 'http://qurmer.skripsi-tik.xyz/image/quote/';
             foreach($data as $dt){
-                $dt['image_url'] = $url.$dt->image;
+                $dt['quote']['image_url'] = $url.$dt->image;
             }
 
-            $data["user"] = User::find(Auth::user()->id);
+            $data['user'] = User::find(Auth::user()->id);
             return SendResponse::success($data, 200);
 
         }catch(\Exception $e){
