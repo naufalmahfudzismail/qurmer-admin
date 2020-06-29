@@ -41,8 +41,8 @@ class DataController extends Controller
             $data = [];
             $data['quote'] = Quote::all();
             $url = 'http://qurmer.skripsi-tik.xyz/image/quote/';
-            foreach($data as $dt){
-                $dt['quote']['image_url'] = $url.$dt->image;
+            foreach($data['quote'] as $dt){
+                $dt['image_url'] = $url.$dt->image;
             }
 
             $data['user'] = User::find(Auth::user()->id);
