@@ -15,7 +15,7 @@ class AudioTableSeeder extends Seeder
         for ($i = 0; $i < 37; $i++) {
             Audio::create([
                 'surah_id' => $i + 1,
-                'file' => 114-$i.".wav",
+                'file' => 114-$i.".mp3",
                 'name' => 114-$i.""
             ]);
         }
