@@ -180,7 +180,7 @@ class AuthController extends Controller
                     $data['current_user'] = $us['user'];
                     $data['current_user']['rank'] = $key +1;
                     $data['current_user']['progress'] = $this->progressLevel(Progress::where('user_id', $us->user->id)->where('is_done', true)
-                    ->with(['challenge' => function ($query) {
+                    ->whereHas(['challenge' => function ($query) {
                         $query->where('daily', false);
                     }])->get());
                     $data['current_user']['score'] = Score::where('user_id', $us->user->id )->first();

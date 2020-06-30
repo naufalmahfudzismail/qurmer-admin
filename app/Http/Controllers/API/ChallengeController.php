@@ -26,7 +26,7 @@ class ChallengeController extends Controller
 
             $data["challenge"] = Challenge::where('daily', false)->whereNotIn('id', $except)->with('level', 'surah')->get();
             $data["progress"] = $this->progressLevel(Progress::where('user_id', Auth::user()->id)->where('is_done', true)
-                ->with(['challenge' => function ($query) {
+                ->whereHas(['challenge' => function ($query) {
                     $query->where('daily', false);
                 }])->get());
 
@@ -38,18 +38,18 @@ class ChallengeController extends Controller
 
     public function getDailyChallenge()
     {
-        // try {
-        $data = [];
-        $except = Progress::select('challenge_id')->where('user_id', Auth::user()->id)->where('is_done', true)->get();
-        $data['challenge']  = Challenge::where('daily', true)->whereNotIn('id', $except)->with('level', 'surah')->get();
+        try {
+            $data = [];
+            $except = Progress::select('challenge_id')->where('user_id', Auth::user()->id)->where('is_done', true)->get();
+            $data['challenge']  = Challenge::where('daily', true)->whereNotIn('id', $except)->with('level', 'surah')->get();
 
-        $data["progress"] = $this->progressLevel(Progress::where('user_id', Auth::user()->id)->where('is_done', true)
-            ->with('challenge')->get());
+            $data["progress"] = $this->progressLevel(Progress::where('user_id', Auth::user()->id)->where('is_done', true)
+                ->with('challenge')->get());
 
-        return SendResponse::success($data, 200);
-        // } catch (\Exception $e) {
-        //     return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
-        // }
+            return SendResponse::success($data, 200);
+        } catch (\Exception $e) {
+            return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
+        }
     }
 
     public function progressLevel($data)
