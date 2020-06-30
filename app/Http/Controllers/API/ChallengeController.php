@@ -27,7 +27,7 @@ class ChallengeController extends Controller
             $data["challenge"] = Challenge::where('daily', false)->whereNotIn('id', $except)->with('level', 'surah')->get();
             $data["progress"] = $this->progressLevel(Progress::where('user_id', Auth::user()->id)->where('is_done', true)
                 ->with(['challenge' => function ($query) {
-                     $query->where('daily', false);
+                     return $query->where('daily', false);
                 }])->get());
 
             return SendResponse::success($data, 200);
