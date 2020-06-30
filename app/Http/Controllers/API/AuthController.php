@@ -145,7 +145,6 @@ class AuthController extends Controller
                     $query->where('daily', false);
                 }])->get());;
 
-
             $rank = Score::orderBy('total_score', 'DESC')->with('user')->get();
             foreach ($rank as $key => $us) {
                 if ($us->user->id == $user->id) {

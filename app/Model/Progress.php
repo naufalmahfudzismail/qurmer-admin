@@ -21,6 +21,6 @@ class Progress extends Model
     
     public function challenge()
     {
-        return $this->belongsTo('App\Model\Challenge', $this->challenge_id);
+        return $this->hasMany('App\Model\Challenge', $this->challenge_id);
     }
 }
