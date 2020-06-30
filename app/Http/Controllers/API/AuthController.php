@@ -140,7 +140,7 @@ class AuthController extends Controller
             $score = Score::where('user_id', $user->id)->first();
 
             $progress_static =  $data["progress"] = $this->progressLevel(Progress::where('user_id', Auth::user()->id)->where('is_done', true)
-            ->with(['challenge' => function ($query) {
+            ->whereHas(['challenge' => function ($query) {
                 $query->where('daily', false);
             }])->get());;
 
@@ -172,7 +172,7 @@ class AuthController extends Controller
 
             foreach($data['rank'] as $key => $us){
                 $us['progress'] = $this->progressLevel(Progress::where('user_id', $us->user->id)->where('is_done', true)
-                ->with(['challenge' => function ($query) {
+                ->whereHas(['challenge' => function ($query) {
                     $query->where('daily', false);
                 }])->get());
 
