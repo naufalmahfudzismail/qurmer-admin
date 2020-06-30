@@ -141,7 +141,9 @@ class AuthController extends Controller
             $score = Score::where('user_id', $user->id)->first();
 
             $progress_static =  $data["progress"] = $this->progressLevel(Progress::where('user_id', Auth::user()->id)->where('is_done', true)
-                ->get());
+                ->whereHas(['challenge' => function ($query) {
+                    $query->where('daily', false);
+                }])->get());;
 
 
             $rank = Score::orderBy('total_score', 'DESC')->with('user')->get();
@@ -177,7 +179,10 @@ class AuthController extends Controller
                 if ($us->user->id == Auth::user()->id) {
                     $data['current_user'] = $us['user'];
                     $data['current_user']['rank'] = $key + 1;
-                    $data['current_user']['progress'] = $this->progressLevel(Progress::where('user_id', $us->user->id)->where('is_done', true)->get());
+                    $data['current_user']['progress'] = $this->progressLevel(Progress::where('user_id', $us->user->id)->where('is_done', true)
+                        ->whereHas(['challenge' => function ($query) {
+                            $query->where('daily', false);
+                        }])->get());
                     $data['current_user']['score'] = Score::where('user_id', $us->user->id)->first();
                 }
             }
