@@ -132,23 +132,22 @@ class AuthController extends Controller
     }
 
 
-    public function getUserData(){
+    public function getUserData()
+    {
 
-        try{
+        try {
             $data = [];
             $user = User::find(Auth::user()->id);
             $score = Score::where('user_id', $user->id)->first();
 
             $progress_static =  $data["progress"] = $this->progressLevel(Progress::where('user_id', Auth::user()->id)->where('is_done', true)
-            ->whereHas(['challenge' => function ($query) {
-                return $query->where('daily', false);
-            }])->get());;
+                ->get());
 
-        
+
             $rank = Score::orderBy('total_score', 'DESC')->with('user')->get();
-            foreach($rank as $key => $us){
-                if($us->user->id == $user->id){
-                    $user['rank'] = $key+1;
+            foreach ($rank as $key => $us) {
+                if ($us->user->id == $user->id) {
+                    $user['rank'] = $key + 1;
                 }
             }
             $data['user'] = $user;
@@ -156,39 +155,34 @@ class AuthController extends Controller
             $data['progress'] = $progress_static;
 
             return SendResponse::success($data, 200);
-
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
 
             return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
-
         }
     }
 
-    public function getRank(){
-        try{
+    public function getRank()
+    {
+        try {
 
             $data = [];
             $data['rank'] = Score::orderBy('total_score', 'DESC')->with('user')->get();
 
-            foreach($data['rank'] as $key => $us){
+            foreach ($data['rank'] as $key => $us) {
                 $us['progress'] = $this->progressLevel(Progress::where('user_id', $us->user->id)->where('is_done', true)
-                ->whereHas(['challenge' => function ($query) {
-                    return $query->where('daily', false);
-                }])->get());
-
-                if($us->user->id == Auth::user()->id){
-                    $data['current_user'] = $us['user'];
-                    $data['current_user']['rank'] = $key +1;
-                    $data['current_user']['progress'] = $this->progressLevel(Progress::where('user_id', $us->user->id)->where('is_done', true)
                     ->whereHas(['challenge' => function ($query) {
-                        return $query->where('daily', false);
+                        $query->where('daily', false);
                     }])->get());
-                    $data['current_user']['score'] = Score::where('user_id', $us->user->id )->first();
+
+                if ($us->user->id == Auth::user()->id) {
+                    $data['current_user'] = $us['user'];
+                    $data['current_user']['rank'] = $key + 1;
+                    $data['current_user']['progress'] = $this->progressLevel(Progress::where('user_id', $us->user->id)->where('is_done', true)->get());
+                    $data['current_user']['score'] = Score::where('user_id', $us->user->id)->first();
                 }
             }
             return SendResponse::success($data, 200);
-
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
         }
     }
@@ -225,5 +219,4 @@ class AuthController extends Controller
 
         return $progress;
     }
-
 }
