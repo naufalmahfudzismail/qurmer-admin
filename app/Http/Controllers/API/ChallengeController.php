@@ -125,7 +125,7 @@ class ChallengeController extends Controller
             $data = [];
             $progress = Progress::find($request['progress_id']);
             $score = Score::where('user_id', Auth::User()->id)->first();
-            $final_score = $this->getTotalScoreChallenge($request['challenge_id']);
+            $final_score = $request->total_score;
             if ($progress->is_done) {
                 return SendResponse::fail('Challenge Sudah Dilakukan', 404);
             } else {

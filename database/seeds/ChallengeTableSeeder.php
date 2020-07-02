@@ -15,8 +15,9 @@ class ChallengeTableSeeder extends Seeder{
                     'surah_id' => $i + 1,
                     'level_id' => 1,
                     'daily' =>  false,
-                    'score' =>1000,
-                    'time' => 5
+                    'score' => 1000,
+                    'wrong_score' => 50,
+                    'time' => 2
                 ]);
 
                 //misi
@@ -24,8 +25,9 @@ class ChallengeTableSeeder extends Seeder{
                     'surah_id' => $i + 1,
                     'level_id' => 2,
                     'daily' => false,
-                    'score' =>1500,
-                    'time' => 5
+                    'score' =>500,
+                    'wrong_score' => 25,
+                    'time' => 1
                 ]);
 
                 Challenge::create([
@@ -33,7 +35,8 @@ class ChallengeTableSeeder extends Seeder{
                     'level_id' => 3,
                     'daily' => true,
                     'score' =>1000,
-                    'time' => 5
+                    'wrong_score' => 100,
+                    'time' => 1
                 ]);
 
                 Challenge::create([
@@ -41,7 +44,8 @@ class ChallengeTableSeeder extends Seeder{
                     'level_id' => 6,
                     'daily' => true,
                     'score' =>1000,
-                    'time' => 5
+                    'wrong_score' => 100,
+                    'time' => 1
                 ]);
 
                 Challenge::create([
@@ -49,7 +53,8 @@ class ChallengeTableSeeder extends Seeder{
                     'level_id' => 7,
                     'daily' => true,
                     'score' =>1000,
-                    'time' => 5
+                    'wrong_score' => 100,
+                    'time' => 1
                 ]);
 
             }
@@ -61,7 +66,8 @@ class ChallengeTableSeeder extends Seeder{
                     'level_id' => 3,
                     'daily' => false,
                     'score' => 2000,
-                    'time' => 5
+                    'wrong_score' => 100,
+                    'time' => 1
                 ]);
 
                 //misi
@@ -70,7 +76,8 @@ class ChallengeTableSeeder extends Seeder{
                     'level_id' => 4,
                     'daily' => false,
                     'score' =>2500,
-                    'time' => 5
+                    'wrong_score' => 100,
+                    'time' => 1
                 ]);
 
                 //misi
@@ -79,6 +86,7 @@ class ChallengeTableSeeder extends Seeder{
                     'level_id' => 5,
                     'daily' => false,
                     'score' => 2000,
+                    'wrong_score' => 100,
                     'time' => 5
                 ]);
 
@@ -88,6 +96,7 @@ class ChallengeTableSeeder extends Seeder{
                     'level_id' => 6,
                     'daily' => false,
                     'score' =>2500,
+                    'wrong_score' => 100,
                     'time' => 5
                 ]);
 
@@ -96,6 +105,7 @@ class ChallengeTableSeeder extends Seeder{
                     'level_id' => 1,
                     'daily' => true,
                     'score' => 2000,
+                    'wrong_score' => 100,
                     'time' => 5
                 ]);
 
@@ -104,7 +114,8 @@ class ChallengeTableSeeder extends Seeder{
                     'level_id' => 2,
                     'daily' => true,
                     'score' => 2000,
-                    'time' => 5
+                    'wrong_score' => 100,
+                    'time' => 1
                 ]);
 
             } 
@@ -117,14 +128,16 @@ class ChallengeTableSeeder extends Seeder{
                     'level_id' => 7,
                     'daily' => false,
                     'score' => 3000,
-                    'time' => 5
+                    'wrong_score' => 100,
+                    'time' => 1
                 ]);
 
                 Challenge::create([
                     'surah_id' => $i + 1,
                     'level_id' => 1,
                     'daily' => true,
-                    'score' =>3000,
+                    'score' => 5000,
+                    'wrong_score' => 100,
                     'time' => 5
                 ]);
 
@@ -133,7 +146,8 @@ class ChallengeTableSeeder extends Seeder{
                     'level_id' => 2,
                     'daily' => true,
                     'score' =>3000,
-                    'time' => 5
+                    'wrong_score' => 100,
+                    'time' => 1
                 ]);
 
                 Challenge::create([
@@ -141,7 +155,8 @@ class ChallengeTableSeeder extends Seeder{
                     'level_id' => 5,
                     'daily' => true,
                     'score' =>3000,
-                    'time' => 5
+                    'wrong_score' => 100,
+                    'time' => 1
                 ]);
             }
         }

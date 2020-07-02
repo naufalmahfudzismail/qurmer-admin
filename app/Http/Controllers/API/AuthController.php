@@ -59,8 +59,20 @@ class AuthController extends Controller
         }
     }
 
+    public function edit(Request $request){
 
+        try{
+            $user = User::find(Auth::user()->id);
+            $updated = $user->update($request);
+            $data['user'] = $user;
+            $data['updated'] = $updated;
 
+            return SendResponse::success($data, 200);
+
+        }catch(\Exception $e){
+            return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
+        }
+    }
 
 
     public function register(Request $request)

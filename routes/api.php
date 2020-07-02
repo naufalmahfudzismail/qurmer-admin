@@ -45,6 +45,9 @@ Route::group(['middleware' => ['auth:api']],  function () {
     Route::post('audio-history', 'API\PlayListController@recapHistory');
 
     Route::get('user', 'API\AuthController@getUserData');
+    Route::put('user', 'API\AuthController@getUserData');
+
+    
     Route::get('rank', 'API\AuthController@getRank');
 
     Route::get('challenge', 'API\ChallengeController@getChallenge');
