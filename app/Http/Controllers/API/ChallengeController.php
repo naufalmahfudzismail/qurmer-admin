@@ -122,15 +122,25 @@ class ChallengeController extends Controller
     public function afterChallenge(Request $request)
     {
         try {
+            
             $data = [];
             $progress = Progress::find($request['progress_id']);
             $score = Score::where('user_id', Auth::User()->id)->first();
-            $final_score = $request->total_score;
+            $final_score = $this->getTotalScoreChallenge($request['challenge_id']);
+
+
             if ($progress->is_done) {
                 return SendResponse::fail('Challenge Sudah Dilakukan', 404);
             } else {
                 $progress->is_done = true;
-                $score->total_score = $score->total_score + $final_score;
+              
+                if($request->wrong != null && $request->wrong_score != null){
+                    $progress->try = $request->wrong;
+                    $wrong_score =  $request->wrong_score;
+                    $score->total_score = $score->total_score + $final_score - $wrong_score;
+                }else{
+                    $score->total_score = $score->total_score + $final_score;
+                }
 
                 $result = $progress->save();
 

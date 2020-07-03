@@ -17,7 +17,7 @@ class ChallengeTableSeeder extends Seeder{
                     'daily' =>  false,
                     'score' => 1000,
                     'wrong_score' => 50,
-                    'time' => 2
+                    'time' => 1
                 ]);
 
                 //misi
@@ -104,7 +104,7 @@ class ChallengeTableSeeder extends Seeder{
                     'surah_id' => $i + 1,
                     'level_id' => 1,
                     'daily' => true,
-                    'score' => 2000,
+                    'score' => 2500,
                     'wrong_score' => 100,
                     'time' => 5
                 ]);
@@ -113,7 +113,7 @@ class ChallengeTableSeeder extends Seeder{
                     'surah_id' => $i + 1,
                     'level_id' => 2,
                     'daily' => true,
-                    'score' => 2000,
+                    'score' => 1000,
                     'wrong_score' => 100,
                     'time' => 1
                 ]);
