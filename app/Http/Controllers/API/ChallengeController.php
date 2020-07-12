@@ -54,14 +54,10 @@ class ChallengeController extends Controller
 
     public function progressLevel($data)
     {
-        //dd($data);
-
         $level_1 = 0;
         $level_2 = 0;
         $level_3 = 0;
-
         $progress = array();
-
         foreach ($data as $key => $dt) {
             $level = Level::find($dt->challenge->level_id)->level;
             $surah = Surah::find($dt->challenge->surah_id);
@@ -81,7 +77,6 @@ class ChallengeController extends Controller
             }
         }
 
-
         return $progress;
     }
 
@@ -91,10 +86,8 @@ class ChallengeController extends Controller
     public function joinChallenge(Request $request)
     {
         try {
-
             $data = [];
             $data_history = [];
-
             $data['challenge_id'] = $request['challenge_id'];
             $data['user_id'] = Auth::user()->id;
             $data['is_done'] = false;
@@ -127,7 +120,6 @@ class ChallengeController extends Controller
             $progress = Progress::find($request['progress_id']);
             $score = Score::where('user_id', Auth::User()->id)->first();
             $final_score = $this->getTotalScoreChallenge($request['challenge_id']);
-
 
             if ($progress->is_done) {
                 return SendResponse::fail('Challenge Sudah Dilakukan', 404);

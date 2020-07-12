@@ -146,12 +146,10 @@ class AuthController extends Controller
 
     public function getUserData()
     {
-
         try {
             $data = [];
             $user = User::find(Auth::user()->id);
             $score = Score::where('user_id', $user->id)->first();
-
             $progress_static =  $data["progress"] = $this->progressLevel(Progress::where('user_id', Auth::user()->id)->where('is_done', true)
                 ->with('challenge')->whereHas('challenge', function ($query) {
                     return $query->where('daily', false);
@@ -166,10 +164,8 @@ class AuthController extends Controller
             $data['user'] = $user;
             $data['score'] = $score;
             $data['progress'] = $progress_static;
-
             return SendResponse::success($data, 200);
         } catch (\Exception $e) {
-
             return SendResponse::fail('Gagal, karena: ' . $e->getMessage(), 500);
         }
     }
@@ -206,7 +202,6 @@ class AuthController extends Controller
 
     public function progressLevel($data)
     {
-
         $level_1 = 0;
         $level_2 = 0;
         $level_3 = 0;
