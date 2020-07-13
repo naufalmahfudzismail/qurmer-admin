@@ -74,7 +74,6 @@
                         </div>
                     </div>
                 </div>
-
                 {{-- Modal Delete --}}
                 <div id="confirmModal" class="modal fade" role="dialog">
                     <div class="modal-dialog">
