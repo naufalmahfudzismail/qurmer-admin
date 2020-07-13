@@ -112,7 +112,7 @@ class QuoteController extends Controller
      */
     public function destroy($id)
     {
-        $quote = Quote::find($id);
+        $quote = Quote::findOrFail($id);
         $delete = $quote->delete();
 
         if($delete){

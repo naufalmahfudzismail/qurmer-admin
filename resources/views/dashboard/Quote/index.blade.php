@@ -152,7 +152,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                 type: "DELETE",
-                url:"{{url('quote.destroy')}}"+'/'+id,
+                url:"{{url('quote')}}"+'/'+id,
                 beforeSend:function(){
                     $('#ok_button').text('Deleting...');;
                 },

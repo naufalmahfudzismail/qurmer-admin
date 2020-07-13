@@ -33,7 +33,6 @@ Route::resource('user', 'BackOffice\UserController')->except(['show']);
 Route::resource('audio', 'BackOffice\AudioController')->except(['show']);
 Route::resource('video', 'BackOffice\VideoController')->except(['show']);
 
-
 Route::get('/surat-data', 'BackOffice\SurahController@getData');
 Route::get('/ayat-data', 'BackOffice\AyatController@getData');
 Route::get('/user-data', 'BackOffice\UserController@getData');
